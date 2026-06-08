@@ -1,15 +1,37 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 
-const env = Object.fromEntries(
-  readFileSync(new URL("../.env.local", import.meta.url), "utf8")
-    .split("\n")
-    .filter((l) => l && !l.trimStart().startsWith("#") && l.includes("="))
-    .map((l) => {
-      const i = l.indexOf("=");
-      return [l.slice(0, i).trim(), l.slice(i + 1).trim()];
-    })
-);
+function loadEnv() {
+  if (
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  ) {
+    return {
+      NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    };
+  }
+
+  const envPath = new URL("../.env.local", import.meta.url);
+  if (!existsSync(envPath)) {
+    console.error(
+      "Missing Supabase env vars. Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY, or create .env.local."
+    );
+    process.exit(1);
+  }
+
+  return Object.fromEntries(
+    readFileSync(envPath, "utf8")
+      .split("\n")
+      .filter((l) => l && !l.trimStart().startsWith("#") && l.includes("="))
+      .map((l) => {
+        const i = l.indexOf("=");
+        return [l.slice(0, i).trim(), l.slice(i + 1).trim()];
+      })
+  );
+}
+
+const env = loadEnv();
 
 const supabase = createClient(
   env.NEXT_PUBLIC_SUPABASE_URL,
@@ -18,7 +40,7 @@ const supabase = createClient(
 );
 
 const testRow = {
-  email: `verify+${Date.now()}@estimarket.test`,
+  email: `verify+${Date.now()}@estimarket.test`.toLowerCase(),
   zip_code: "00000",
   role: "homeowner",
   source: "verify-script",
@@ -34,29 +56,23 @@ if (read.error) {
 }
 console.log("READ ok. Sample columns:", Object.keys(read.data[0] ?? {}));
 
-// 2) Does the upsert (with onConflict email,role) work? This requires the
-//    unique constraint to exist, otherwise Postgres returns code 42P10.
-const up1 = await supabase
-  .from("waitlist_signups")
-  .upsert(testRow, { onConflict: "email,role", ignoreDuplicates: true });
-if (up1.error) {
-  console.error("UPSERT FAILED:", up1.error);
-  if (up1.error.code === "42P10") {
-    console.error(
-      "\n>>> Missing unique constraint on (email, role). Add one in Supabase."
-    );
-  }
+// 2) Does insert work? Production uses a unique index on (lower(email), role).
+const ins1 = await supabase.from("waitlist_signups").insert(testRow);
+if (ins1.error) {
+  console.error("INSERT FAILED:", ins1.error);
   process.exit(1);
 }
-console.log("UPSERT ok (insert).");
+console.log("INSERT ok.");
 
-// 3) Repeat to confirm duplicate is ignored, not errored.
-const up2 = await supabase
-  .from("waitlist_signups")
-  .upsert(testRow, { onConflict: "email,role", ignoreDuplicates: true });
+// 3) Repeat to confirm duplicate is treated as success (23505), not errored.
+const ins2 = await supabase.from("waitlist_signups").insert(testRow);
 console.log(
-  "UPSERT ok (duplicate ignored):",
-  up2.error ? `ERROR ${up2.error.message}` : "no error"
+  "INSERT duplicate:",
+  ins2.error?.code === "23505"
+    ? "ok (unique violation, expected)"
+    : ins2.error
+      ? `ERROR ${ins2.error.message}`
+      : "unexpected success (no unique index?)"
 );
 
 // 4) Clean up the test row.

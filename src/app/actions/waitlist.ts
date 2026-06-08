@@ -19,10 +19,25 @@ export async function joinWaitlist(_prev: unknown, formData: FormData) {
   if (parsed.data.company_website) return { ok: true, zip: "" };
 
   const { company_website: _honeypot, ...row } = parsed.data;
+  const signup = {
+    ...row,
+    email: row.email.toLowerCase(),
+  };
   const { error } = await supabaseAdmin
     .from("waitlist_signups")
-    .upsert(row, { onConflict: "email,role", ignoreDuplicates: true });
+    .insert(signup);
 
-  if (error) return { ok: false, error: "Something went wrong. Please retry." };
-  return { ok: true, zip: row.zip_code };
+  if (error) {
+    if (error.code === "23505") {
+      return { ok: true, zip: signup.zip_code };
+    }
+    console.error("waitlist signup failed:", {
+      code: error.code,
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+    return { ok: false, error: "Something went wrong. Please retry." };
+  }
+  return { ok: true, zip: signup.zip_code };
 }
