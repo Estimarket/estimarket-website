@@ -35,7 +35,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-[300px]">
-            <Logo wordmarkClassName="text-[28px]" markSize={40} />
+            <Logo height={40} />
             <p className="mt-5 text-base leading-normal text-band-faint">
               A real marketplace for home improvement.
             </p>

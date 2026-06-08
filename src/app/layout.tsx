@@ -25,6 +25,13 @@ export const metadata: Metadata = {
   title: "Estimarket — A real marketplace for home improvement",
   description:
     "Estimarket connects homeowners and contractors. Now live in Denver, CO.",
+  icons: {
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/brand/favicon-180.png",
+  },
 };
 
 export default function RootLayout({

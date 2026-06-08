@@ -1,40 +1,44 @@
+import Image from "next/image";
 import Link from "next/link";
+
+const LOCKUPS = {
+  color: { src: "/brand/lockup-color.png", w: 630, h: 128 },
+  "mono-navy": { src: "/brand/lockup-mono-navy.png", w: 630, h: 128 },
+  reverse: { src: "/brand/lockup-reverse.png", w: 630, h: 128 },
+} as const;
+
+type LogoVariant = keyof typeof LOCKUPS;
 
 type LogoProps = {
   className?: string;
-  /** Tailwind text-size class for the wordmark, e.g. "text-xl" */
-  wordmarkClassName?: string;
-  markSize?: number;
+  /** Lockup height in pixels; width scales from the asset aspect ratio. */
+  height?: number;
+  variant?: LogoVariant;
 };
 
 export default function Logo({
   className,
-  wordmarkClassName = "text-xl",
-  markSize = 32,
+  height = 32,
+  variant = "color",
 }: LogoProps) {
+  const lockup = LOCKUPS[variant];
+  const width = Math.round((height / lockup.h) * lockup.w);
+
   return (
     <Link
       href="/"
       aria-label="Estimarket home"
-      className={`flex items-center gap-2 ${className ?? ""}`}
+      className={`inline-flex shrink-0 ${className ?? ""}`}
     >
-      <svg
-        width={markSize}
-        height={markSize}
-        viewBox="0 0 32 32"
-        fill="none"
-        aria-hidden="true"
-        className="shrink-0"
-      >
-        <rect width="32" height="32" rx="8" fill="var(--color-navy)" />
-        <rect x="7" y="9" width="18" height="3.2" rx="1.6" fill="#ffffff" />
-        <rect x="7" y="14.4" width="12" height="3.2" rx="1.6" fill="var(--color-brand)" />
-        <rect x="7" y="19.8" width="15" height="3.2" rx="1.6" fill="#ffffff" />
-      </svg>
-      <span className={`font-bold tracking-tight ${wordmarkClassName}`}>
-        <span className="text-navy">Esti</span>
-        <span className="text-brand">market</span>
-      </span>
+      <Image
+        src={lockup.src}
+        alt="Estimarket"
+        width={width}
+        height={height}
+        priority
+        className="h-auto w-auto"
+        style={{ height, width: "auto", maxWidth: "none" }}
+      />
     </Link>
   );
 }

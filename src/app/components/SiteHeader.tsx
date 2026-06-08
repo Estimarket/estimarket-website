@@ -45,7 +45,7 @@ export default function SiteHeader() {
 
       <div className="border-b border-line bg-white">
         <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-20">
-          <Logo wordmarkClassName="text-[22px]" />
+          <Logo height={32} />
 
           <nav className="hidden items-center gap-8 lg:flex">
             {NAV_LINKS.map((link) => {
