@@ -135,13 +135,13 @@ function WaitlistFormInner({
           })}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
           <input
             type="email"
             name="email"
             required
             placeholder="you@email.com"
-            className={`${inputClass} flex-1`}
+            className={`${inputClass} w-full sm:flex-1`}
           />
           <input
             type="text"
@@ -150,7 +150,7 @@ function WaitlistFormInner({
             minLength={3}
             maxLength={12}
             placeholder="Zip"
-            className={`${inputClass} w-[140px]`}
+            className={`${inputClass} w-full sm:w-[140px]`}
           />
         </div>
 
