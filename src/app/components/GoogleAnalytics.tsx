@@ -1,0 +1,27 @@
+import Script from "next/script";
+import { Suspense } from "react";
+import GoogleAnalyticsPageView from "./GoogleAnalyticsPageView";
+
+const GA_MEASUREMENT_ID = "G-VY5H1C8Q4D";
+
+export default function GoogleAnalytics() {
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
+      <Suspense fallback={null}>
+        <GoogleAnalyticsPageView measurementId={GA_MEASUREMENT_ID} />
+      </Suspense>
+    </>
+  );
+}
