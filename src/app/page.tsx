@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ButtonLink } from "./components/Button";
 import CTABand from "./components/CTABand";
+import HowItWorksIllustration from "./components/HowItWorksIllustration";
 
 const HERO_PERKS = [
   "Free for homeowners",
@@ -356,18 +357,7 @@ function HowItWorks() {
                   step.tone === "contractor" ? "lg:order-1" : ""
                 }`}
               >
-                <div
-                  className="relative mx-auto w-full max-w-[560px]"
-                  style={{ aspectRatio: `${step.w} / ${step.h}` }}
-                >
-                  <img
-                    src={step.img}
-                    alt=""
-                    width={step.w}
-                    height={step.h}
-                    className="absolute inset-0 h-full w-full object-contain object-center"
-                  />
-                </div>
+                <HowItWorksIllustration src={step.img} />
               </div>
             </div>
           ))}

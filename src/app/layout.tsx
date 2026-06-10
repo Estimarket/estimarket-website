@@ -45,7 +45,7 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${dmSerif.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white">
+      <body className="flex min-h-full flex-col overflow-x-hidden bg-white">
         <GoogleAnalytics />
         <SiteHeader />
         <main className="flex-1">{children}</main>
