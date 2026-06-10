@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://estimarket.com"),
   title: "Estimarket — A real marketplace for home improvement",
   description:
     "Estimarket connects homeowners and contractors. Now live in Denver, CO.",
