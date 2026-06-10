@@ -57,8 +57,9 @@ function Hero() {
             for home project quotes.
           </h1>
           <p className="mt-6 max-w-[530px] text-lg leading-normal text-[#f3f4f6]">
-            Our AI quote builder walks you through your project in 10 minutes.
-            Contractors compete. You pick the best bid.
+            We help homeowners build a professional quality scope for their
+            project, and then list it on an open marketplace for contractors to
+            bid on.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/waitlist/homeowner" className="w-full sm:w-[197px]">
