@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "./components/Button";
 import CTABand from "./components/CTABand";
-import HowItWorksIllustration from "./components/HowItWorksIllustration";
 
 const HERO_PERKS = [
   "Free for homeowners",
@@ -251,9 +250,9 @@ const STEPS: Step[] = [
     title: "Homeowners describe their project, and we scope it out.",
     body: "Answer a few guided questions and snap some photos. Estimarket turns it into an estimator-quality brief — itemized labor, measurements, and materials list — the same scope a pro would write after a site visit.",
     chip: "Homeowners save hours of extra visits",
-    img: "/images/hiw-step1.svg",
-    w: 596,
-    h: 578,
+    img: "/images/hiw-step1.png",
+    w: 1200,
+    h: 1164,
   },
   {
     n: "2",
@@ -262,9 +261,9 @@ const STEPS: Step[] = [
     title: "Projects are posted to an open marketplace for contractors in the area.",
     body: "Your structured scope goes live for qualified contractors who match your trade and service area. Homeowner personal information is protected as you go.",
     chip: "Live: accepting bids",
-    img: "/images/hiw-step2.svg",
-    w: 596,
-    h: 596,
+    img: "/images/hiw-step2.png",
+    w: 1200,
+    h: 1200,
   },
   {
     n: "3",
@@ -273,9 +272,9 @@ const STEPS: Step[] = [
     title: "Contractors review and bid – without a home visit.",
     body: "Pros review the entire scope and submit a labor-only bid that includes questions or callouts for TBD items. Bid on all labor items or just share a daily labor rate. Bids are always a range, never a commitment to an exact price.",
     chip: "Contractors don’t pay to bid, and save a site visit",
-    img: "/images/hiw-step3.svg",
-    w: 596,
-    h: 582,
+    img: "/images/hiw-step3.png",
+    w: 1200,
+    h: 1172,
   },
   {
     n: "4",
@@ -284,9 +283,9 @@ const STEPS: Step[] = [
     title: "Homeowners compare bids side by side and choose their favorite.",
     body: "Every bid lands in one place, itemized and normalized. Compare across price, rating, or start date at a glance — then pick the one that fits best with your needs.",
     chip: "Homeowners see what their project should cost",
-    img: "/images/hiw-step4.svg",
-    w: 596,
-    h: 571,
+    img: "/images/hiw-step4.png",
+    w: 1200,
+    h: 1150,
   },
   {
     n: "5",
@@ -295,9 +294,9 @@ const STEPS: Step[] = [
     title: "Meet for a walkthrough to finalize the project and get to work.",
     body: "Schedule one walkthrough — now the homeowner and contractor review the bid details in person, lock the scope and start date, and move forward with the work. One visit, real numbers, done.",
     chip: "Both: on-site, in person",
-    img: "/images/hiw-step5.svg",
-    w: 596,
-    h: 576,
+    img: "/images/hiw-step5.png",
+    w: 1200,
+    h: 1160,
   },
 ];
 
@@ -357,7 +356,13 @@ function HowItWorks() {
                   step.tone === "contractor" ? "lg:order-1" : ""
                 }`}
               >
-                <HowItWorksIllustration src={step.img} />
+                <Image
+                  src={step.img}
+                  alt=""
+                  width={step.w}
+                  height={step.h}
+                  className="mx-auto h-auto w-full max-w-[min(560px,calc(100dvw-2.5rem))]"
+                />
               </div>
             </div>
           ))}
