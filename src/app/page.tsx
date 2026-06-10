@@ -302,8 +302,8 @@ const STEPS: Step[] = [
 
 function HowItWorks() {
   return (
-    <section className="bg-white px-5 py-20 sm:px-6 lg:px-20">
-      <div className="mx-auto max-w-[1280px]">
+    <section className="overflow-x-hidden bg-white px-5 py-20 sm:px-6 lg:px-20">
+      <div className="mx-auto min-w-0 max-w-[1280px]">
         <p className="text-center text-[13px] font-bold uppercase tracking-[2px] text-accent">
           How it works
         </p>
@@ -324,9 +324,11 @@ function HowItWorks() {
           {STEPS.map((step) => (
             <div
               key={step.n}
-              className="grid grid-cols-1 items-center gap-8 border-t border-line pt-12 lg:grid-cols-2 lg:gap-16"
+              className="grid min-w-0 grid-cols-1 items-center gap-8 border-t border-line pt-12 lg:grid-cols-2 lg:gap-16"
             >
-              <div className={step.tone === "contractor" ? "lg:order-2" : ""}>
+              <div
+                className={`min-w-0 ${step.tone === "contractor" ? "lg:order-2" : ""}`}
+              >
                 <span
                   className={`text-5xl font-bold ${
                     step.tone === "homeowner" ? "text-accent" : "text-navy"
@@ -350,17 +352,22 @@ function HowItWorks() {
               </div>
 
               <div
-                className={`flex justify-center ${
+                className={`min-w-0 w-full ${
                   step.tone === "contractor" ? "lg:order-1" : ""
                 }`}
               >
-                <img
-                  src={step.img}
-                  alt=""
-                  width={step.w}
-                  height={step.h}
-                  className="h-auto w-full max-w-[560px]"
-                />
+                <div
+                  className="relative mx-auto w-full max-w-[560px]"
+                  style={{ aspectRatio: `${step.w} / ${step.h}` }}
+                >
+                  <img
+                    src={step.img}
+                    alt=""
+                    width={step.w}
+                    height={step.h}
+                    className="absolute inset-0 h-full w-full object-contain object-center"
+                  />
+                </div>
               </div>
             </div>
           ))}
