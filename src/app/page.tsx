@@ -102,13 +102,17 @@ function Hero() {
 
 type Stat = { value: string; label: string };
 
-function StatRow({ stats }: { stats: Stat[] }) {
+function StatRow({ stats, center = false }: { stats: Stat[]; center?: boolean }) {
   return (
-    <div className="mt-6 flex gap-10">
+    <div className={`mt-6 flex gap-10${center ? " justify-center" : ""}`}>
       {stats.map((s) => (
-        <div key={s.label}>
+        <div key={s.label} className={center ? "text-center" : ""}>
           <p className="text-[28px] font-bold leading-none text-navy">{s.value}</p>
-          <p className="mt-2 max-w-[120px] text-xs leading-snug text-muted">
+          <p
+            className={`mt-2 max-w-[120px] text-xs leading-snug text-muted${
+              center ? " mx-auto" : ""
+            }`}
+          >
             {s.label}
           </p>
         </div>
@@ -158,7 +162,10 @@ function WhyEstimarket() {
             <StatRow
               stats={[
                 { value: "3–5", label: "weeks of gathering quotes" },
-                { value: "78%", label: "over budget on renovation" },
+                {
+                  value: "78%",
+                  label: "of homeowners report going over budget on renovation",
+                },
               ]}
             />
           </div>
@@ -200,9 +207,12 @@ function WhyEstimarket() {
               saves time and ensures you get a fair deal.
             </p>
             <StatRow
+              center
               stats={[
-                { value: "3–5", label: "weeks to get comparable quotes" },
-                { value: "78%", label: "over budget on renovation" },
+                {
+                  value: "~10 mins",
+                  label: "to post your project on a live marketplace",
+                },
               ]}
             />
           </div>
@@ -218,9 +228,12 @@ function WhyEstimarket() {
               your office lowers the cost of winning new work.
             </p>
             <StatRow
+              center
               stats={[
-                { value: "$300–$2.5k", label: "per month on lead platforms" },
-                { value: "10–25%", label: "typical close rate" },
+                {
+                  value: "Just $25/mo",
+                  label: "One low fee to access the entire marketplace and bid.",
+                },
               ]}
             />
           </div>
