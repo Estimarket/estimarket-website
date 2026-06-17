@@ -25,10 +25,7 @@ function PromoBar() {
       <div className="relative mx-auto flex max-w-[1440px] items-center justify-center px-4 py-2.5">
         <p className="flex items-center gap-2 text-[13px]">
           <span className="size-2 rounded-[4px] bg-promo-dot" aria-hidden="true" />
-          Now live in Denver, CO.
-        </p>
-        <p className="absolute right-20 hidden text-[11px] font-medium text-muted lg:block">
-          DENVER · 412 contractors live
+          Coming soon to Colorado&apos;s Front Range communities
         </p>
       </div>
     </div>
