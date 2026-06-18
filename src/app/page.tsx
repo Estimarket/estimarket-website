@@ -104,7 +104,7 @@ type Stat = { value: string; label: string };
 
 function StatRow({ stats, center = false }: { stats: Stat[]; center?: boolean }) {
   return (
-    <div className={`mt-6 flex gap-10${center ? " justify-center" : ""}`}>
+    <div className={center ? "mt-6 flex justify-center" : "mt-6 grid grid-cols-2 gap-10"}>
       {stats.map((s) => (
         <div key={s.label} className={center ? "text-center" : ""}>
           <p className="text-[28px] font-bold leading-none text-navy">{s.value}</p>
