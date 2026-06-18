@@ -200,11 +200,12 @@ function WhyEstimarket() {
           <div className="rounded-2xl bg-[#fff5ef] p-8">
             <Badge tone="homeowner">Homeowners</Badge>
             <h3 className="mt-4 text-xl font-bold text-navy">
-              Share your project details once and ensure you get a good deal.
+              Share your project details once and find yourself a fair deal.
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-slate">
-              Sharing the same project details to contractors in an open market
-              saves time and ensures you get a fair deal.
+              We translate your project details into a scope contractors can bid
+              on—so you can get more quotes in less time, all without an in-home
+              visit.
             </p>
             <StatRow
               center
