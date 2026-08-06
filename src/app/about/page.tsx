@@ -6,6 +6,7 @@ export const metadata = {
   title: "About — Estimarket",
   description:
     "Our mission: fix the cracked foundation of the home improvement industry with a real marketplace where both sides win.",
+  alternates: { canonical: "/about" },
 };
 
 const STORY = [

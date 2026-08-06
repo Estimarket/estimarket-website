@@ -11,10 +11,15 @@ export function generateStaticParams() {
   return ROLES.map((role) => ({ role }));
 }
 
+// One page, served at two URLs — `role` only seeds the form and the analytics
+// source, so both bodies are identical. Rather than let search engines pick a
+// winner between two duplicates, neither is indexed. `follow` keeps link equity
+// flowing, and both URLs stay live for users and campaign links.
 export const metadata = {
   title: "Join the waitlist — Estimarket",
   description:
     "We’re launching soon. Join the mailing list to find out when Estimarket goes live in your area.",
+  robots: { index: false, follow: true },
 };
 
 export default async function Page({

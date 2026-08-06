@@ -2,6 +2,12 @@ import Image from "next/image";
 import { ButtonLink } from "./components/Button";
 import CTABand from "./components/CTABand";
 
+// Title and description are inherited from the root layout; this only pins the
+// homepage's canonical URL so it can't be attributed to the apex host.
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 const HERO_PERKS = [
   "Free for homeowners",
   "No site visit required",

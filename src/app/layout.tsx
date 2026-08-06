@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Serif_Display, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "./lib/site";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
@@ -23,7 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://estimarket.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Estimarket — A real marketplace for home improvement",
   description:
     "Estimarket connects homeowners and contractors. Now live in Denver, CO.",

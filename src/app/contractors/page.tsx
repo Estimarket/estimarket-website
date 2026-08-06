@@ -7,6 +7,7 @@ export const metadata = {
   title: "For contractors — Estimarket",
   description:
     "Bid on professional-quality project scopes from homeowners in your area. Never pay for leads.",
+  alternates: { canonical: "/contractors" },
 };
 
 const HERO_PERKS = [

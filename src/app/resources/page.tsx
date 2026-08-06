@@ -6,6 +6,7 @@ export const metadata = {
   title: "The Rebuild — Estimarket Blog & Resources",
   description:
     "Our takes and news on all things home projects — for homeowners looking to make dreams come true, and the contractors looking to win more work.",
+  alternates: { canonical: "/resources" },
 };
 
 const FAQ_GROUPS = [

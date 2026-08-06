@@ -6,6 +6,7 @@ export const metadata = {
   title: "For homeowners — Estimarket",
   description:
     "List your home project on Estimarket and get itemized bids from local contractors — no in-home sales visits.",
+  alternates: { canonical: "/homeowners" },
 };
 
 const HERO_PERKS = [
