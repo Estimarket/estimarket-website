@@ -7,6 +7,7 @@ export const metadata = {
   title: "Project directory — Estimarket",
   description:
     "Pick your project type and we’ll turn your answers into a contractor-ready brief that pros compete to bid on.",
+  alternates: { canonical: "/projects" },
 };
 
 const HERO_TRUST = [

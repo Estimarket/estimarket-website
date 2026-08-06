@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "../../components/Button";
 import CTABand from "../../components/CTABand";
+import { CATEGORY_SLUGS } from "../categories";
 
 type CategoryContent = {
   name: string;
@@ -118,7 +119,7 @@ const CATEGORY_DATA: Record<string, CategoryContent> = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return Object.keys(CATEGORY_DATA).map((category) => ({ category }));
+  return CATEGORY_SLUGS.map((category) => ({ category }));
 }
 
 export async function generateMetadata({
@@ -132,6 +133,7 @@ export async function generateMetadata({
   return {
     title: `${data.name} projects — Estimarket`,
     description: data.heroSub,
+    alternates: { canonical: `/projects/${category}` },
   };
 }
 

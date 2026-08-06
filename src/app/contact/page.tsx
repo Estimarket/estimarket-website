@@ -4,6 +4,7 @@ export const metadata = {
   title: "Contact — Estimarket",
   description:
     "Get in touch with a real person. Questions about an estimate, press inquiries, partnerships, or product requests — the right team is one message away.",
+  alternates: { canonical: "/contact" },
 };
 
 const HELP_CARDS = [
