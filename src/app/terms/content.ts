@@ -93,25 +93,44 @@ export const TERMS: LegalDocContent = {
     {
       type: "ul",
       items: [
-        "**Basic:** [$__ per month / $__ per year] — [describe included features]",
-        "**Premium:** [$__ per month / $__ per year] — [describe included features]",
+        "**Pro: $25 per month, or $270 per year** — up to 20 bid submissions per month, a contractor profile, customer budgets visible before you bid, and a performance dashboard.",
+        "**Elite: $50 per month, or $540 per year** — everything in Pro, plus unlimited bid submissions, the ability to accept direct bidding on the contractor’s website, an Elite badge, and advanced analytics on your bids.",
       ],
     },
     {
       type: "p",
-      text: "Subscriptions are billed in advance through our third-party payment processor, [Stripe]. By subscribing, you authorize us and our payment processor to charge your payment method the applicable fees, plus any taxes, on a recurring basis.",
+      text: "**How you are billed.** Subscriptions are billed in advance and renew automatically until you cancel. Where you subscribe determines who processes your payment:",
+    },
+    {
+      type: "ul",
+      items: [
+        "**On the web** — payments are processed by our third-party payment processor, Stripe. By subscribing, you authorize us and our payment processor to charge your payment method the applicable fees, plus any taxes, on a recurring basis.",
+        "**Through the Apple App Store** — payments are processed by Apple and are also governed by your agreement with Apple. Apple, not Estimarket, charges your payment method and administers billing, cancellation, and refunds for those subscriptions.",
+      ],
     },
     {
       type: "note",
-      text: "AUTOMATIC RENEWAL. YOUR SUBSCRIPTION WILL AUTOMATICALLY RENEW AT THE END OF EACH BILLING PERIOD (MONTHLY OR ANNUAL) AND YOUR PAYMENT METHOD WILL BE CHARGED THE THEN-CURRENT FEE, UNTIL YOU CANCEL. YOU MAY CANCEL AT ANY TIME THROUGH YOUR ACCOUNT SETTINGS OR BY CONTACTING US, AND CANCELLATION WILL TAKE EFFECT AT THE END OF THE CURRENT BILLING PERIOD.",
+      text: "AUTOMATIC RENEWAL. YOUR SUBSCRIPTION WILL AUTOMATICALLY RENEW AT THE END OF EACH BILLING PERIOD (MONTHLY OR ANNUAL) AND YOUR PAYMENT METHOD WILL BE CHARGED THE THEN-CURRENT FEE, UNTIL YOU CANCEL.",
     },
     {
       type: "p",
-      text: "Except where required by law, subscription fees are non-refundable, and we do not provide refunds or credits for partial billing periods.",
+      text: "**How to cancel.** You may cancel at any time, and cancellation takes effect at the end of your current billing period. **If you subscribed on the web,** cancel through your account settings or by contacting us. **If you subscribed through the Apple App Store,** you must cancel through your Apple ID subscription settings — Estimarket cannot cancel an Apple-billed subscription on your behalf.",
     },
     {
       type: "p",
-      text: "We may change subscription prices or features. We will give you advance notice of any price change, and the new price will apply to your next billing period after the notice. Your continued use after a price change constitutes acceptance.",
+      text: "**Refunds.** Except where required by law, subscription fees are non-refundable, and we do not provide refunds or credits for partial billing periods. **Subscriptions purchased through the Apple App Store are subject to Apple’s refund policies,** and any refund request for those subscriptions must be made to Apple rather than to us.",
+    },
+    {
+      type: "p",
+      text: "**Price changes.** We may change subscription prices or features. We will give you advance notice of any price change, and the new price will apply to your next billing period after the notice. For subscriptions billed through Apple, price changes are also subject to Apple’s notice and consent process. Your continued use after a price change takes effect constitutes acceptance.",
+    },
+    {
+      type: "p",
+      text: "**Promotions and free trials.** We may offer promotional pricing, introductory rates, or free trial periods from time to time. The specific terms of any offer — including its duration, the price that applies when it ends, and any eligibility limits — will be disclosed to you at the time of the offer, and those disclosed terms control. We may limit an offer to new subscribers or to one offer per business, and we may modify or discontinue any offer prospectively; doing so will not change the terms already in effect for your current billing period.",
+    },
+    {
+      type: "note",
+      text: "IF YOU START A FREE TRIAL, YOUR SUBSCRIPTION WILL AUTOMATICALLY CONVERT TO A PAID SUBSCRIPTION AT THE THEN-CURRENT RATE FOR YOUR TIER WHEN THE TRIAL PERIOD ENDS, AND YOUR PAYMENT METHOD WILL BE CHARGED, UNLESS YOU CANCEL BEFORE THE TRIAL ENDS. WE WILL TELL YOU THE LENGTH OF THE TRIAL AND THE PRICE THAT WILL APPLY BEFORE YOU BEGIN, AND WE WILL REMIND YOU BEFORE THE TRIAL CONVERTS.",
     },
 
     {
@@ -210,7 +229,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "p",
-      text: "We respect intellectual-property rights and will respond to notices of alleged copyright infringement under the Digital Millennium Copyright Act. If you believe content on the Services infringes your copyright, send a notice with the required information to our designated agent: [DMCA Agent name / address / email]. We may remove allegedly infringing content and terminate repeat infringers’ access to the Services.",
+      text: "We respect intellectual-property rights and will respond to notices of alleged copyright infringement under the Digital Millennium Copyright Act. If you believe content on the Services infringes your copyright, send a notice with the required information to our designated agent: **DMCA Agent, Estimarket LLC, 1990 Depew St, Unit 140083, Denver, CO 80214 — phone (717) 278-9990, email support@estimarket.com**. We may remove allegedly infringing content and terminate repeat infringers’ access to the Services.",
     },
 
     {
@@ -243,7 +262,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "note",
-      text: "TO THE FULLEST EXTENT PERMITTED BY LAW, ESTIMARKET AND ITS OFFICERS, MEMBERS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR PROPERTY DAMAGE OR PERSONAL INJURY ARISING FROM ANY PROJECT OR DEALINGS BETWEEN USERS, EVEN IF ADVISED OF THE POSSIBILITY. ESTIMARKET’S TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICES WILL NOT EXCEED THE GREATER OF (A) THE AMOUNT YOU PAID ESTIMARKET IN THE 12 MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM, OR (B) [$100]. SOME JURISDICTIONS DO NOT ALLOW CERTAIN LIMITATIONS, SO SOME OF THE ABOVE MAY NOT APPLY TO YOU.",
+      text: "TO THE FULLEST EXTENT PERMITTED BY LAW, ESTIMARKET AND ITS OFFICERS, MEMBERS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR PROPERTY DAMAGE OR PERSONAL INJURY ARISING FROM ANY PROJECT OR DEALINGS BETWEEN USERS, EVEN IF ADVISED OF THE POSSIBILITY. ESTIMARKET’S TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICES WILL NOT EXCEED THE GREATER OF (A) THE AMOUNT YOU PAID ESTIMARKET IN THE 12 MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM, OR (B) $100. SOME JURISDICTIONS DO NOT ALLOW CERTAIN LIMITATIONS, SO SOME OF THE ABOVE MAY NOT APPLY TO YOU. IN SUCH JURISDICTIONS, OUR LIABILITY WILL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.",
     },
 
     {
@@ -274,7 +293,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "p",
-      text: "**Arbitration.** Arbitration will be administered by [AAA or JAMS] under its applicable consumer rules, by a single arbitrator, and may be conducted by phone, video, or written submissions. The arbitrator will decide the dispute, and judgment on the award may be entered in any court of competent jurisdiction. The Federal Arbitration Act governs the interpretation and enforcement of this Section.",
+      text: "**Arbitration.** Arbitration will be administered by JAMS under its applicable consumer rules, including the **JAMS Consumer Minimum Standards**, by a single arbitrator, and may be conducted by phone, video, or written submissions. The arbitrator will decide the dispute, and judgment on the award may be entered in any court of competent jurisdiction. The Federal Arbitration Act governs the interpretation and enforcement of this Section. If JAMS is unavailable or unwilling to administer the arbitration consistent with these Terms, you and Estimarket will agree on a substitute administrator; if the parties cannot agree, a court of competent jurisdiction may appoint one.",
     },
     {
       type: "note",
@@ -282,7 +301,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "p",
-      text: "**30-day right to opt out.** You may opt out of this arbitration agreement within 30 days after you first accept these Terms by sending written notice of your decision to opt out to [opt-out email/address], including your name and account information. If you opt out, neither you nor Estimarket can require the other to arbitrate, and this Section will not apply to you.",
+      text: "**30-day right to opt out.** You may opt out of this arbitration agreement within 30 days after you first accept these Terms by sending written notice of your decision to opt out to **support@estimarket.com**, including your name and account information. If you opt out, neither you nor Estimarket can require the other to arbitrate, and this Section will not apply to you.",
     },
     {
       type: "p",
@@ -297,7 +316,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "p",
-      text: "These Terms are governed by the laws of the State of Colorado, without regard to its conflict-of-laws rules. To the extent any dispute is not subject to arbitration, you and Estimarket consent to the exclusive jurisdiction of the state and federal courts located in [County, Colorado].",
+      text: "These Terms are governed by the laws of the State of Colorado, without regard to its conflict-of-laws rules. To the extent any dispute is not subject to arbitration, you and Estimarket consent to the exclusive jurisdiction of the state and federal courts located in Denver, Colorado.",
     },
 
     {
@@ -330,7 +349,7 @@ export const TERMS: LegalDocContent = {
     },
     {
       type: "p",
-      text: "Questions about these Terms may be sent to [contact email], or by mail to [Estimarket LLC, P.O. Box ____, City, CO ZIP].",
+      text: "Questions about these Terms may be sent to **support@estimarket.com**, or by mail to Estimarket LLC, 1990 Depew St., Unit 140083, Denver, CO 80214.",
     },
   ],
 };

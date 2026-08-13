@@ -82,7 +82,7 @@ export const PRIVACY: LegalDocContent = {
     },
     {
       type: "p",
-      text: "**With service providers.** We share information with vendors that help us run the Services, under contracts that limit their use of the data. These include **Vercel** (hosting), **Supabase** (database, authentication, and photo storage), **Stripe and/or Apple** (payments), [your email provider] (transactional and marketing email), and Google Analytics (usage analytics).",
+      text: "**With service providers.** We share information with vendors that help us run the Services, under contracts that limit their use of the data. These include **Vercel** (hosting), **Supabase** (database, authentication, and photo storage), **Stripe and/or Apple** (payments), our email delivery provider (transactional and marketing email), and Google Analytics (usage analytics).",
     },
     {
       type: "p",
@@ -237,7 +237,11 @@ export const PRIVACY: LegalDocContent = {
     },
     {
       type: "p",
-      text: "If you have questions about this Policy or our privacy practices, contact us at **support@estimarket.com**, or by mail at [Estimarket LLC, P.O. Box ____, Edgewater, CO ZIP].",
+      text: "If you have questions about this Policy or our privacy practices, contact us at **support@estimarket.com**, or by mail at:",
+    },
+    {
+      type: "address",
+      lines: ["Estimarket LLC", "1990 Depew St. Unit 140083", "Denver, CO 80214"],
     },
   ],
 };

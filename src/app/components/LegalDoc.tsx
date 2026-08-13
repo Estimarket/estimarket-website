@@ -14,7 +14,9 @@ export type LegalBlock =
   | { type: "p"; text: string }
   | { type: "ul"; items: string[] }
   /** All-caps statutory notices (arbitration, warranty disclaimers, etc.). */
-  | { type: "note"; text: string };
+  | { type: "note"; text: string }
+  /** Postal address, one line per element. */
+  | { type: "address"; lines: string[] };
 
 export type LegalDocContent = {
   title: string;
@@ -39,9 +41,25 @@ function richText(text: string) {
   );
 }
 
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/** Parsed by hand rather than via Date, which would shift the day in tz < UTC. */
 function formatUpdated(iso: string) {
-  const [y, m, d] = iso.split("-");
-  return `${m}/${d}/${y}`;
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${MONTHS[m - 1]} ${d}, ${y}`;
 }
 
 export default function LegalDoc({ doc }: { doc: LegalDocContent }) {
@@ -118,6 +136,21 @@ export default function LegalDoc({ doc }: { doc: LegalDocContent }) {
                     className="mb-6 text-[18px] font-bold leading-[28px] text-ink"
                   >
                     {richText(block.text)}
+                  </p>
+                );
+              }
+              if (block.type === "address") {
+                return (
+                  <p
+                    key={i}
+                    className="mb-6 text-[18px] font-semibold leading-[28px] text-ink"
+                  >
+                    {block.lines.map((line, j) => (
+                      <Fragment key={j}>
+                        {line}
+                        {j < block.lines.length - 1 ? <br /> : null}
+                      </Fragment>
+                    ))}
                   </p>
                 );
               }
