@@ -19,6 +19,9 @@ const STATIC_ROUTES: Array<[path: string, priority: number]> = [
   ["/resources", 0.7],
   ["/about", 0.5],
   ["/contact", 0.5],
+  // Indexable so they can be found and cited, but never what we rank for.
+  ["/privacy", 0.3],
+  ["/terms", 0.3],
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

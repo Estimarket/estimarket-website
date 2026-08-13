@@ -23,8 +23,8 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "FAQ", href: "#" },
       { label: "Contact", href: "/contact" },
-      { label: "Privacy policy", href: "#" },
-      { label: "Terms of service", href: "#" },
+      { label: "Privacy policy", href: "/privacy" },
+      { label: "Terms of service", href: "/terms" },
     ],
   },
 ];
@@ -67,7 +67,7 @@ export default function SiteFooter() {
 
         <hr className="my-8 border-slate/30" />
         <p className="text-xs text-muted">
-          © 2025 Estimarket Inc. All rights reserved.
+          © 2025 Estimarket LLC. All rights reserved.
         </p>
       </div>
     </footer>
