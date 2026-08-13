@@ -5,7 +5,7 @@ export const TERMS: LegalDocContent = {
   breadcrumb: "Terms of service",
   subtitle:
     "The agreement between you and Estimarket when you use the marketplace. Estimarket is a venue for homeowners and contractors to find each other — we are not a party to the work itself.",
-  updated: "2026-08-11",
+  updated: "2026-08-13",
   blocks: [
     {
       type: "p",

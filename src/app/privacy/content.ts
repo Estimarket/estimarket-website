@@ -6,7 +6,7 @@ export const PRIVACY: LegalDocContent = {
   subtitle:
     "What we collect, who sees it, and how we keep your home’s location private. We do not sell your personal information or use it for advertising.",
   byline: "Estimarket LLC · Applies to users in the United States",
-  updated: "2026-08-11",
+  updated: "2026-08-13",
   blocks: [
     {
       type: "p",
