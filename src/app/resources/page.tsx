@@ -177,7 +177,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="bg-white px-5 py-16 sm:px-10">
+      <section id="faq" className="scroll-mt-[96px] bg-white px-5 py-16 sm:px-10">
         <div className="mx-auto max-w-[1280px]">
           <div className="text-center">
             <p className="text-[11px] font-bold uppercase tracking-[1.1px] text-accent">
