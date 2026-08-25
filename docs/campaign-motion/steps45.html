@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Steps 4 + 5 — static imagery</title>
+<style>
+@font-face{
+  font-family:"DM Sans";
+  src:url("fonts/DMSans-VariableFont_opsz_wght.ttf") format("truetype-variations");
+  font-weight:100 1000; font-style:normal; font-display:block;
+}
+:root{
+  --navy:#0E214B; --marine:#1C4695; --brand:#E85D26; --brand-dark:#C04E18;
+  --green:#16A34A; --green-bg:#DCFCE7; --green-fg:#166534;
+  --amber-bg:#FEF3C7; --amber-fg:#92400E;
+  --n900:#111827; --n700:#374151; --n500:#6B7280; --n300:#D1D5DB; --n200:#E5E7EB; --n100:#F3F4F6; --n50:#F9FAFB; --n0:#fff;
+  --sh-sm:0 1px 3px rgba(14,33,75,.10),0 1px 2px rgba(14,33,75,.06);
+  --sh-md:0 4px 6px rgba(14,33,75,.08),0 2px 4px rgba(14,33,75,.06);
+  --sh-xl:0 20px 25px rgba(14,33,75,.14),0 10px 10px rgba(14,33,75,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;background:#b9c2d0;padding:24px;display:flex;gap:24px;flex-wrap:wrap;
+  -webkit-font-smoothing:antialiased}
+.frame{width:592px;height:444px;background:var(--n50);border-radius:24px;overflow:hidden;position:relative;
+  box-shadow:var(--sh-md)}
+
+/* ============ STEP 4 — compare + choose ============ */
+.s4{padding:16px 18px}
+.s4 .eyebrow{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--n500)}
+.s4 .h{font-size:15px;font-weight:700;color:var(--n900);margin-top:3px}
+.s4 .hsub{font-size:10.5px;color:var(--n500);margin-top:2px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 10px}
+.tile{background:var(--n0);border:1px solid var(--n200);border-radius:10px;padding:7px 9px}
+.tile .k{font-size:8.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--n500)}
+.tile .v{font-size:13px;font-weight:700;color:var(--n900);margin-top:2px;font-variant-numeric:tabular-nums;
+  letter-spacing:-.01em;white-space:nowrap}
+.tile .s{font-size:8.5px;color:var(--n500);margin-top:1px}
+
+.bid{background:var(--n0);border:1px solid var(--n200);border-radius:12px;padding:8px 11px;display:flex;
+  align-items:center;gap:10px;margin-bottom:7px;box-shadow:var(--sh-sm)}
+.bid.chosen{border:2px solid var(--brand);padding:7px 10px;box-shadow:0 0 0 3px rgba(232,93,38,.10),var(--sh-md)}
+.av{width:30px;height:30px;border-radius:999px;flex:none;display:grid;place-items:center;color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.02em}
+.bid .mid{flex:1;min-width:0}
+.bid .nm{font-size:12.5px;font-weight:700;color:var(--n900);display:flex;align-items:center;gap:6px}
+.bid .rt{font-size:9.5px;color:var(--n500);margin-top:2px}
+.bid .rt b{color:var(--n700);font-weight:600}
+.chips{display:flex;gap:5px;margin-top:4px}
+.chip{font-size:8.5px;font-weight:600;border-radius:999px;padding:2px 7px;background:var(--n100);color:var(--n700)}
+.chip.ok{background:var(--green-bg);color:var(--green-fg)}
+.chip.tbd{background:var(--amber-bg);color:var(--amber-fg)}
+.bid .right{text-align:right;flex:none}
+.bid .rg{font-size:14px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.bid .est{font-size:9px;color:var(--n500);margin-top:1px}
+.badge{font-size:8.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:var(--brand);
+  color:#fff;border-radius:999px;padding:2px 7px}
+.btn{font-size:10px;font-weight:600;border-radius:7px;padding:6px 11px;border:1px solid var(--n300);
+  color:var(--n700);background:var(--n0);flex:none}
+.btn.msg{display:flex;align-items:center;gap:4px}
+.btn svg{width:11px;height:11px;stroke:var(--n500);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ STEP 5 — schedule the walkthrough ============ */
+.s5{background:#e9ecf1}
+.s5 .behind{position:absolute;inset:0;padding:16px 18px;filter:saturate(.7)}
+.s5 .bar{background:#fff;border-radius:10px;border:1px solid var(--n200)}
+.s5 .scrim{position:absolute;inset:0;background:rgba(14,33,75,.50)}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:430px;background:#fff;
+  border-radius:18px;box-shadow:var(--sh-xl);padding:18px 20px 18px}
+.modal .mt{font-size:16px;font-weight:700;color:var(--n900)}
+.modal .ms{font-size:11.5px;color:var(--n500);margin-top:3px}
+.modal .lbl{font-size:9px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--n500);
+  margin:14px 0 7px}
+.days{display:flex;gap:6px}
+.day{flex:1;border:1px solid var(--n300);border-radius:9px;padding:6px 0;text-align:center;background:#fff}
+.day .d{font-size:8px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--n500)}
+.day .n{font-size:14px;font-weight:700;color:var(--n900);margin-top:1px;font-variant-numeric:tabular-nums}
+.day.sel{border:1.5px solid var(--brand);background:#FEF3EE}
+.day.sel .d{color:var(--brand-dark)}
+.day.fade{opacity:.45}
+.times{display:flex;gap:6px;flex-wrap:wrap}
+.time{border:1px solid var(--n300);border-radius:9px;padding:7px 0;font-size:11.5px;font-weight:600;color:var(--n700);
+  text-align:center;background:#fff;width:calc((100% - 12px)/3)}
+.time.sel{border:1.5px solid var(--brand);background:#FEF3EE;color:var(--n900)}
+.cta{margin-top:15px;background:var(--brand);color:#fff;border-radius:10px;padding:12px 0;text-align:center;
+  font-size:13.5px;font-weight:700}
+.note{margin-top:10px;font-size:9.5px;line-height:1.45;color:var(--n500);text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ============================ STEP 4 ============================ -->
+<div class="frame s4" id="f4">
+  <div class="eyebrow">Compare bids</div>
+  <div class="h">West Highlands remodel</div>
+  <div class="hsub">4 bids · 2 new since your last visit</div>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="k">Bids received</div><div class="v">4</div><div class="s">2 new</div>
+    </div>
+    <div class="tile">
+      <div class="k">Average range</div><div class="v">$12.7k – $16.9k</div><div class="s">Budget $18k – $28k</div>
+    </div>
+    <div class="tile">
+      <div class="k">Fastest start</div><div class="v">4–6 weeks</div><div class="s">2 contractors</div>
+    </div>
+  </div>
+
+  <div class="bid">
+    <div class="av" style="background:#1C4695">DT</div>
+    <div class="mid">
+      <div class="nm">Denver Tile + Remodel</div>
+      <div class="rt">★ <b>4.8</b> · 98 jobs · Denver, CO</div>
+      <div class="chips"><span class="chip">6–8 weeks</span><span class="chip tbd">1 TBD</span><span class="chip">8 line items</span></div>
+    </div>
+    <div class="right">
+      <div class="rg">$11.9k – $15.4k</div>
+      <div class="est">est. $13,650</div>
+    </div>
+    <div class="btn">View bid</div>
+  </div>
+
+  <div class="bid chosen">
+    <div class="av" style="background:#E85D26">BR</div>
+    <div class="mid">
+      <div class="nm">Brennan Remodel Co. <span class="badge">Chosen</span></div>
+      <div class="rt">★ <b>4.9</b> · 142 jobs · Denver, CO</div>
+      <div class="chips"><span class="chip">4–6 weeks</span><span class="chip tbd">1 TBD</span><span class="chip ok">Within budget</span></div>
+    </div>
+    <div class="right">
+      <div class="rg">$12.3k – $16.6k</div>
+      <div class="est">est. $14,450</div>
+    </div>
+    <div class="btn msg">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Message
+    </div>
+  </div>
+
+  <div class="bid">
+    <div class="av" style="background:#6B7280">RM</div>
+    <div class="mid">
+      <div class="nm">Rocky Mountain Bath Co.</div>
+      <div class="rt">★ <b>4.6</b> · 44 jobs · Aurora, CO</div>
+      <div class="chips"><span class="chip">8–10 weeks</span><span class="chip ok">No TBDs</span><span class="chip">7 line items</span></div>
+    </div>
+    <div class="right">
+      <div class="rg">$13.8k – $18.2k</div>
+      <div class="est">est. $16,000</div>
+    </div>
+    <div class="btn">View bid</div>
+  </div>
+
+  <div class="bid">
+    <div class="av" style="background:#8FA0B8">MH</div>
+    <div class="mid">
+      <div class="nm">Mile High Bathrooms</div>
+      <div class="rt">★ <b>4.7</b> · 61 jobs · Lakewood, CO</div>
+      <div class="chips"><span class="chip">4–6 weeks</span><span class="chip ok">No TBDs</span><span class="chip">7 line items</span></div>
+    </div>
+    <div class="right">
+      <div class="rg">$12.9k – $17.4k</div>
+      <div class="est">est. $15,150</div>
+    </div>
+    <div class="btn">View bid</div>
+  </div>
+</div>
+
+<!-- ============================ STEP 5 ============================ -->
+<div class="frame s5" id="f5">
+  <div class="behind" style="padding:0;display:flex">
+    <div style="width:96px;background:#fff;border-right:1px solid var(--n200);padding:14px 12px">
+      <div class="bar" style="height:16px;border:none;background:#dfe4ec;margin-bottom:16px"></div>
+      <div class="bar" style="height:11px;border:none;background:#eef1f6;margin-bottom:9px"></div>
+      <div class="bar" style="height:11px;border:none;background:#eef1f6;margin-bottom:9px"></div>
+      <div class="bar" style="height:11px;border:none;background:#eef1f6"></div>
+    </div>
+    <div style="flex:1;padding:14px 16px">
+      <div class="bar" style="height:40px;margin-bottom:10px"></div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <div class="bar" style="flex:1;height:46px"></div>
+        <div class="bar" style="flex:1;height:46px"></div>
+        <div class="bar" style="flex:1;height:46px"></div>
+      </div>
+      <div class="bar" style="height:66px;margin-bottom:9px"></div>
+      <div class="bar" style="height:66px;margin-bottom:9px"></div>
+      <div class="bar" style="height:66px"></div>
+    </div>
+  </div>
+  <div class="scrim"></div>
+
+  <div class="modal">
+    <div class="mt">Schedule the walkthrough</div>
+    <div class="ms">with Sarah J. · West Highlands remodel</div>
+
+    <div class="lbl">Pick a day</div>
+    <div class="days">
+      <div class="day sel"><div class="d">Fri</div><div class="n">21</div></div>
+      <div class="day"><div class="d">Mon</div><div class="n">24</div></div>
+      <div class="day"><div class="d">Tue</div><div class="n">25</div></div>
+      <div class="day"><div class="d">Wed</div><div class="n">26</div></div>
+      <div class="day"><div class="d">Thu</div><div class="n">27</div></div>
+      <div class="day fade"><div class="d">Fri</div><div class="n">28</div></div>
+    </div>
+
+    <div class="lbl">Pick a time</div>
+    <div class="times">
+      <div class="time">9:00 AM</div>
+      <div class="time">11:00 AM</div>
+      <div class="time">1:00 PM</div>
+      <div class="time sel">2:00 PM</div>
+      <div class="time">4:00 PM</div>
+    </div>
+
+    <div class="cta">Confirm Friday at 2:00 PM</div>
+    <div class="note">One visit to walk the scope and lock the start date. After that it's your contract and your vendors.</div>
+  </div>
+</div>
+
+</body>
+</html>
