@@ -12,11 +12,14 @@ export type LineItem = {
   detail: string;
   /** Shorter detail used where the hero's narrower card needs it. */
   heroDetail?: string;
+  /** Compact name used by the separately-authored mobile compositions. */
+  shortName?: string;
   amount: number;
 };
 
 export const PROJECT = {
   title: "West Highlands remodel",
+  neighborhood: "West Highlands",
   metaLine: "Denver, CO 80211 · Submitted 1h ago · 2 bids so far",
   cardMeta: "West Highlands, Denver · 1h ago · 4 photos",
   categoryChip: "Full bath remodel",
@@ -44,17 +47,20 @@ export const LINE_ITEMS: LineItem[] = [
   {
     name: "Demo — tile, vanity, glass surround",
     detail: "Includes haul-away",
+    shortName: "Demo & haul-away",
     amount: 1800,
   },
   {
     name: "Rough plumbing — vanity + shower",
     detail: "Same footprint, materials supplied",
     heroDetail: "Same footprint",
+    shortName: "Rough plumbing",
     amount: 2200,
   },
   {
     name: "Shower pan + waterproofing",
     detail: "New pan, membrane, curb",
+    shortName: "Shower pan + waterproofing",
     amount: 3100,
   },
   {
@@ -73,6 +79,7 @@ export const LINE_ITEMS: LineItem[] = [
  * not an allowance and never a dollar amount in the total. */
 export const TBD_ITEM = {
   name: "Toilet drain + vent relocation",
+  shortName: "Toilet drain + vent",
   /** Detail line in the bid builder / hero labor list. */
   bidDetail: "Behind the alcove wall — confirm at site visit",
   /** Detail line in the scope viewer's labor list. */
