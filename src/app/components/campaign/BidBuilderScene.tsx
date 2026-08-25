@@ -108,7 +108,7 @@ function DesktopScene() {
                 key={label}
                 className={`rstep${done ? " done" : ""}${now ? " now" : ""}`}
               >
-                <span className="dot">{done ? "✓" : i + 1}</span>
+                <span className="dot">{i === 0 ? "✓" : i + 1}</span>
                 {label}
               </div>
             );

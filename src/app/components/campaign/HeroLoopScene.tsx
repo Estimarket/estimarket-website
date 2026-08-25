@@ -125,9 +125,11 @@ export default function HeroLoopScene() {
     : { phase, notifIn, revealCard, tbdOn, rowsIn, total };
 
   return (
+    // overflow-hidden: the scaled stage keeps its 588px layout width, which
+    // would otherwise widen the page on narrow viewports
     <div
       ref={wrapRef}
-      className="mx-auto w-full max-w-[588px]"
+      className="mx-auto w-full max-w-[588px] overflow-hidden"
       style={{ height: STAGE_H * scale }}
     >
       <div

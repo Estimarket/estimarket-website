@@ -188,7 +188,8 @@ export default function DenverFoundingContractorsPage() {
       {/* Hero */}
       <section className="bg-navy px-5 py-14 text-white sm:px-10 lg:px-[100px] lg:py-[88px]">
         <div className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[588px_1fr] lg:gap-16">
-          <div className="flex flex-col items-start gap-7">
+          {/* min-w-0: the spot-dot row's fixed content must shrink, not widen the column */}
+          <div className="flex min-w-0 flex-col items-start gap-7">
             <span className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-[0.1em]">
               FOUNDING CONTRACTORS · DENVER
             </span>
