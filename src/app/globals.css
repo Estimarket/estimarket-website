@@ -19,6 +19,13 @@
   --color-line: #e5e7eb;
   --color-surface: #f9fafb;
 
+  /* "TBD" / "Confirm on site" treatment — a real product state, not an
+     approximation of an existing colour (campaign scenes) */
+  --color-tbd: #4f46e5;
+  --color-tbd-bg: #eeeefb;
+  --color-tbd-border: #c9c9f0;
+  --color-tbd-row: #f2f2fc;
+
   /* On-navy text tints (used in CTA band / footer) */
   --color-band-text: #80a6cc;
   --color-band-muted: #7399bf;
