@@ -5,8 +5,10 @@ import Link from "next/link";
 import BidBuilderScene from "../components/campaign/BidBuilderScene";
 import HeroLoopScene from "../components/campaign/HeroLoopScene";
 import ScopeReviewScene from "../components/campaign/ScopeReviewScene";
-import { FOUNDING_REF, getFoundingSpots } from "../lib/foundingSpots";
-import { APP_URL } from "../lib/site";
+import { claimHref, getFoundingSpots } from "../lib/foundingSpots";
+
+// ISR: the spots meter is a live count in both claim modes.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Denver Founding Contractors — Estimarket",
@@ -17,15 +19,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Every "Claim your spot" CTA lands on the app's sign-up wizard carrying the
-// cohort ref (EST-72): the app stashes `ref` + `utm_*` in a first-touch cookie
-// and claims a founding spot when the contractor finalizes.
-const CLAIM_HREF = `${APP_URL}/signup?${new URLSearchParams({
-  ref: FOUNDING_REF,
-  utm_source: "estimarket.com",
-  utm_medium: "landing",
-  utm_campaign: "denver-founding-contractors",
-})}`;
+// Where "Claim your spot" goes depends on NEXT_PUBLIC_CLAIM_MODE — see
+// lib/foundingSpots.ts. Interim: our waitlist with the founding ref. End state:
+// the app's sign-up wizard, which claims the founding spot (EST-72).
+const CLAIM_HREF = claimHref();
 
 // `size` replaces the default sizing classes wholesale (Tailwind can't
 // reliably override h-14 with a later h-[54px]).
