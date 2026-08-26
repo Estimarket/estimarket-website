@@ -84,7 +84,7 @@ const BENEFITS = [
   {
     icon: "badge-percent",
     title: "Zero platform fees for twelve months",
-    body: "Every job you win in the founding year is yours in full. No commission, no per-lead charge, no subscription.",
+    body: "Don't pay anything to participate in the marketplace for a full year. After that, just $25/month.",
     dark: true,
   },
   {
@@ -324,7 +324,7 @@ export default function DenverFoundingContractorsPage() {
               Skip the sales visit and bid directly on detailed scopes instead.
             </h2>
             <p className="text-[17px] leading-[1.65] text-slate">
-              {"A Denver bathroom goes from a homeowner's idea to ready-to-start work without a single free estimate. Here's where you come in."}
+              {"Estimarket produces professional quality project scopes from homeowner inputs, so you can submit a ballpark bid without a visit to the customer's home first."}
             </p>
           </div>
 
