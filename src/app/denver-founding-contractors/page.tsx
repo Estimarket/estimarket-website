@@ -22,11 +22,13 @@ const CLAIM_HREF = "/waitlist/contractor";
 
 const SPOTS = { open: 9, total: 10, claimed: 1 };
 
-function ClaimButton() {
+// `size` replaces the default sizing classes wholesale (Tailwind can't
+// reliably override h-14 with a later h-[54px]).
+function ClaimButton({ size = "h-14 px-8 text-lg" }: { size?: string }) {
   return (
     <Link
       href={CLAIM_HREF}
-      className="inline-flex h-14 items-center justify-center rounded-lg bg-brand px-8 text-lg font-semibold tracking-[0.01em] text-white transition-colors hover:bg-[#cf4f1e]"
+      className={`inline-flex items-center justify-center rounded-lg bg-brand font-semibold tracking-[0.01em] text-white transition-colors hover:bg-[#cf4f1e] ${size}`}
     >
       Claim your spot
     </Link>
@@ -82,7 +84,7 @@ const BENEFITS = [
   {
     icon: "badge-percent",
     title: "Zero platform fees for twelve months",
-    body: "Every job you win in the founding year is yours in full. No commission, no per-lead charge, no subscription.",
+    body: "Don't pay anything to participate in the marketplace for a full year. After that, just $25/month.",
     dark: true,
   },
   {
@@ -185,21 +187,43 @@ const STEPS: Step[] = [
 export default function DenverFoundingContractorsPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-navy px-5 py-14 text-white sm:px-10 lg:px-[100px] lg:py-[88px]">
+      {/* Hero — skyline backdrop per Figma "Hero — Variant A": one photo,
+          per-breakpoint crop; mobile fades down to solid navy, desktop gets a
+          global knockdown plus a side scrim over the copy column. */}
+      <section className="relative isolate overflow-hidden bg-navy px-5 pb-16 pt-14 text-white sm:px-10 lg:px-12 lg:pb-24 lg:pt-[88px]">
+        <Image
+          src="/images/dfc-denver-skyline.jpg"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          className="-z-10 object-cover [object-position:37%_50%] lg:[object-position:50%_27%]"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(14,33,75,0.26),rgba(14,33,75,0.88)_42%,#0e214b_70%)] lg:hidden"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 hidden bg-navy/[0.24] lg:block"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-y-0 left-0 -z-10 hidden w-[80.5%] bg-[linear-gradient(to_right,rgba(14,33,75,0.97),rgba(14,33,75,0.6)_58%,rgba(14,33,75,0)_100%)] lg:block"
+        />
         <div className="mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[588px_1fr] lg:gap-16">
           {/* min-w-0: the spot-dot row's fixed content must shrink, not widen the column */}
           <div className="flex min-w-0 flex-col items-start gap-7">
             <span className="rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-[0.1em]">
               FOUNDING CONTRACTORS · DENVER
             </span>
-            <h1 className="text-[40px] font-bold leading-[1.06] tracking-[-0.025em] sm:text-[52px] lg:text-[60px]">
+            <h1 className="text-[38px] font-bold leading-[1.06] tracking-[-0.025em] sm:text-[52px] lg:text-[60px]">
               {"Claim your spot on Denver's founding team"}
             </h1>
-            <p className="max-w-[520px] text-lg leading-[1.6] text-white/[0.78] lg:text-[19px]">
+            <p className="max-w-[520px] text-[17px] leading-[1.6] text-white/[0.78] lg:text-[19px]">
               {"We're launching in Denver with bathroom renovation jobs on Oct. 1st — with exclusive access for 10 founding contractors."}
             </p>
-            <div className="w-full max-w-[460px] rounded-2xl border border-white/10 bg-white/[0.06] px-[22px] py-5">
+            <div className="w-full max-w-[460px] rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-[18px] lg:px-[22px] lg:py-5">
               <div className="flex items-center justify-between gap-4">
                 <p className="text-[15px] font-semibold">
                   {SPOTS.open} of {SPOTS.total} founding spots open
@@ -208,20 +232,20 @@ export default function DenverFoundingContractorsPage() {
                   {SPOTS.claimed} CLAIMED
                 </p>
               </div>
-              <div className="mt-3 flex gap-2">
+              <div className="mt-3 flex gap-1.5 lg:gap-2">
                 {Array.from({ length: SPOTS.total }, (_, i) => (
                   <span
                     key={i}
-                    className={`h-2 w-[26px] rounded-full ${i < SPOTS.claimed ? "bg-white/[0.22]" : "bg-brand"}`}
+                    className={`h-2 w-6 rounded-full lg:w-[26px] ${i < SPOTS.claimed ? "bg-white/[0.22]" : "bg-brand"}`}
                   />
                 ))}
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-4">
-              <ClaimButton />
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <ClaimButton size="h-[54px] w-full px-4 text-[17px] sm:h-14 sm:w-auto sm:px-8 sm:text-lg" />
               <Link
                 href="#how-it-works"
-                className="inline-flex h-14 items-center justify-center rounded-lg border-2 border-white/[0.22] px-6 text-base font-semibold text-white transition-colors hover:bg-white/10"
+                className="inline-flex h-[54px] w-full items-center justify-center rounded-lg border-2 border-white/[0.22] px-6 text-base font-semibold text-white transition-colors hover:bg-white/10 sm:h-14 sm:w-auto"
               >
                 See how bidding works
               </Link>
@@ -300,7 +324,7 @@ export default function DenverFoundingContractorsPage() {
               Skip the sales visit and bid directly on detailed scopes instead.
             </h2>
             <p className="text-[17px] leading-[1.65] text-slate">
-              {"A Denver bathroom goes from a homeowner's idea to ready-to-start work without a single free estimate. Here's where you come in."}
+              {"Estimarket produces professional quality project scopes from homeowner inputs, so you can submit a ballpark bid without a visit to the customer's home first."}
             </p>
           </div>
 
