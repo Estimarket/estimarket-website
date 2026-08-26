@@ -44,8 +44,9 @@
 .dfc.hero-slot {
   width: 588px;
   height: 441px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--r-xl); /* skyline-hero chrome (Figma 141:30) */
 }
 .dfc.step-slot {
   width: 592px;
@@ -112,7 +113,10 @@
 
 /* ================= SCENE A — HERO ================= */
 .dfc .sA {
-  background: radial-gradient(120% 90% at 70% 0%, rgba(36, 90, 188, 0.22), transparent 60%);
+  /* The navy layer under the radial keeps the scene's on-dark text legible
+     now that the hero band is the skyline photo instead of solid navy. */
+  background: radial-gradient(120% 90% at 70% 0%, rgba(36, 90, 188, 0.22), transparent 60%)
+    rgba(14, 33, 75, 0.6);
 }
 .dfc .sA .panel {
   position: absolute;
