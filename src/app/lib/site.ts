@@ -7,3 +7,9 @@
  * ranking signals across two hostnames.
  */
 export const SITE_URL = "https://www.estimarket.com";
+
+/**
+ * Origin of the product app (sign-up, dashboards). Overridable so a preview or
+ * staging deploy of this site can point its CTAs at the staging app.
+ */
+export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://app.estimarket.com";

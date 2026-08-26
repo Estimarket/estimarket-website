@@ -5,6 +5,8 @@ import Link from "next/link";
 import BidBuilderScene from "../components/campaign/BidBuilderScene";
 import HeroLoopScene from "../components/campaign/HeroLoopScene";
 import ScopeReviewScene from "../components/campaign/ScopeReviewScene";
+import { FOUNDING_REF, getFoundingSpots } from "../lib/foundingSpots";
+import { APP_URL } from "../lib/site";
 
 export const metadata: Metadata = {
   title: "Denver Founding Contractors — Estimarket",
@@ -15,12 +17,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// TODO(signup): every "Claim your spot" CTA points at the existing contractor
-// waitlist until the founding-contractor signup flow is wired up — swap this
-// href (and the hardcoded spots-open copy below) when that ships.
-const CLAIM_HREF = "/waitlist/contractor";
-
-const SPOTS = { open: 9, total: 10, claimed: 1 };
+// Every "Claim your spot" CTA lands on the app's sign-up wizard carrying the
+// cohort ref (EST-72): the app stashes `ref` + `utm_*` in a first-touch cookie
+// and claims a founding spot when the contractor finalizes.
+const CLAIM_HREF = `${APP_URL}/signup?${new URLSearchParams({
+  ref: FOUNDING_REF,
+  utm_source: "estimarket.com",
+  utm_medium: "landing",
+  utm_campaign: "denver-founding-contractors",
+})}`;
 
 // `size` replaces the default sizing classes wholesale (Tailwind can't
 // reliably override h-14 with a later h-[54px]).
@@ -184,7 +189,8 @@ const STEPS: Step[] = [
   },
 ];
 
-export default function DenverFoundingContractorsPage() {
+export default async function DenverFoundingContractorsPage() {
+  const SPOTS = await getFoundingSpots();
   return (
     <>
       {/* Hero — skyline backdrop per Figma "Hero — Variant A": one photo,
