@@ -35,13 +35,6 @@ export function claimHref(): string {
 /** Cap of the active cohort — the fallback when the app can't be reached. */
 const DEFAULT_TOTAL = 10;
 
-/**
- * The meter always shows at least one spot taken. A 10-of-10-open meter reads
- * as "nobody wants this"; the campaign's own seat counts as the first claim.
- * Real claims take over as soon as the count exceeds one.
- */
-const MIN_CLAIMED_SHOWN = 1;
-
 export type FoundingSpots = { claimed: number; open: number; total: number };
 
 async function claimedFromApp(): Promise<{ claimed: number; total: number } | null> {
@@ -90,6 +83,6 @@ export async function getFoundingSpots(): Promise<FoundingSpots> {
   } else {
     claimed = (await claimedFromWaitlist()) ?? 0;
   }
-  const shown = Math.min(total, Math.max(MIN_CLAIMED_SHOWN, claimed));
+  const shown = Math.min(total, Math.max(0, claimed));
   return { claimed: shown, open: total - shown, total };
 }
