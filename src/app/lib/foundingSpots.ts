@@ -47,7 +47,9 @@ export type FoundingSpots = { claimed: number; open: number; total: number };
 async function claimedFromApp(): Promise<{ claimed: number; total: number } | null> {
   try {
     const res = await fetch(`${APP_URL}/api/public/founding-spots`, {
-      next: { revalidate: 60 },
+      // No Next fetch cache: the app endpoint's 10 s CDN cache is the only layer, so a contractor
+      // returning from the sign-up flow always sees the count that includes their claim.
+      cache: "no-store",
     });
     if (!res.ok) return null;
     const body = (await res.json()) as { claimed?: unknown; total?: unknown };
