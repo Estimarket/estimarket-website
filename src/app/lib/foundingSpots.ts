@@ -47,7 +47,7 @@ export type FoundingSpots = { claimed: number; open: number; total: number };
 async function claimedFromApp(): Promise<{ claimed: number; total: number } | null> {
   try {
     const res = await fetch(`${APP_URL}/api/public/founding-spots`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 10 },
     });
     if (!res.ok) return null;
     const body = (await res.json()) as { claimed?: unknown; total?: unknown };

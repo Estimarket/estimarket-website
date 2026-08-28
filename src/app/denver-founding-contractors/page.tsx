@@ -7,8 +7,9 @@ import HeroLoopScene from "../components/campaign/HeroLoopScene";
 import ScopeReviewScene from "../components/campaign/ScopeReviewScene";
 import { claimHref, getFoundingSpots } from "../lib/foundingSpots";
 
-// ISR: the spots meter is a live count in both claim modes.
-export const revalidate = 60;
+// ISR: the spots meter is a live count in both claim modes. 10 s keeps a claim visible within
+// seconds while still serving the page from cache under load.
+export const revalidate = 10;
 
 export const metadata: Metadata = {
   title: "Denver Founding Contractors — Estimarket",
