@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Preview deployments
+
+Every PR gets a Vercel preview built with the Preview env scope, which points the
+founder CTA and spots meter at the staging platform (`stg.estimarket.com`) in
+`signup` mode. Use the preview URL to test the founder sign-up flow end to end.
