@@ -336,7 +336,7 @@ function HowItWorks() {
           </h2>
           <p className="max-w-[360px] text-sm leading-relaxed text-muted">
             Five steps from a homeowner’s idea to ready-to-start work — no site
-            visits, no “I-you” quotes.
+            visits, no “F-you” quotes.
           </p>
         </div>
 
