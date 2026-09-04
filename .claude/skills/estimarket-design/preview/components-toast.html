@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 22px 20px; background: var(--color-bg-page); display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .toast { display: flex; align-items: flex-start; gap: 12px; background: #fff; border-radius: 12px; box-shadow: 0 10px 15px rgba(14,33,75,0.10), 0 4px 6px rgba(14,33,75,0.05); padding: 12px 14px; width: 340px; position: relative; }
+  .toast::before { content: ""; position: absolute; left: 0; top: 10px; bottom: 10px; width: 4px; border-radius: 4px; }
+  .toast.success::before { background: #16A34A; }
+  .toast.error::before   { background: #DC2626; }
+  .toast.warn::before    { background: #D97706; }
+  .toast.info::before    { background: #245ABC; }
+  .body { flex: 1; }
+  .title { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+  .msg { font-size: 13px; color: var(--color-text-muted); margin-top: 2px; }
+  .ico { width: 20px; height: 20px; margin-left: 6px; flex: 0 0 20px; }
+</style></head><body>
+<div class="toast success"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg><div class="body"><div class="title">Saved to favorites</div><div class="msg">Cabin in Aspen — find it in Trips.</div></div></div>
+<div class="toast info"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#245ABC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><div class="body"><div class="title">Price alert set</div><div class="msg">We'll let you know if it drops.</div></div></div>
+<div class="toast warn"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4M12 18h.01"/></svg><div class="body"><div class="title">Dates unavailable</div><div class="msg">Try May 21 – May 28 instead.</div></div></div>
+</body></html>

@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--color-bg-surface); }
+  .row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { aspect-ratio: 1.2 / 1; border-radius: var(--radius-md); border: 1px solid rgba(14,33,75,0.06); }
+  .name { font-size: 12px; font-weight: 600; color: var(--color-text-primary); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted); }
+</style></head><body>
+<div class="row">
+  <div class="sw"><div class="chip" style="background:#0E214B"></div><div class="name">Dark Blue</div><div class="hex">#0E214B</div></div>
+  <div class="sw"><div class="chip" style="background:#1C4695"></div><div class="name">Medium Blue</div><div class="hex">#1C4695</div></div>
+  <div class="sw"><div class="chip" style="background:#245ABC"></div><div class="name">Blue · primary</div><div class="hex">#245ABC</div></div>
+  <div class="sw"><div class="chip" style="background:#328EEE"></div><div class="name">Light Blue</div><div class="hex">#328EEE</div></div>
+  <div class="sw"><div class="chip" style="background:#A8CEFF"></div><div class="name">Sky</div><div class="hex">#A8CEFF</div></div>
+  <div class="sw"><div class="chip" style="background:#E8F2FF"></div><div class="name">Ice</div><div class="hex">#E8F2FF</div></div>
+</div>
+</body></html>

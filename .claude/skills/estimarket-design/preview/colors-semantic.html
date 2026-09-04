@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--color-bg-surface); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .dot { width: 22px; height: 22px; border-radius: var(--radius-sm); border: 1px solid rgba(14,33,75,0.08); flex: 0 0 22px; }
+  .token { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-primary); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .use { font-size: 11px; color: var(--color-text-muted); }
+</style></head><body>
+<div class="grid">
+  <div class="row"><div class="dot" style="background:#111827"></div><div class="token">--color-text-primary</div><div class="use">body</div></div>
+  <div class="row"><div class="dot" style="background:#374151"></div><div class="token">--color-text-secondary</div><div class="use">support</div></div>
+  <div class="row"><div class="dot" style="background:#6B7280"></div><div class="token">--color-text-muted</div><div class="use">captions</div></div>
+  <div class="row"><div class="dot" style="background:#245ABC"></div><div class="token">--color-text-link</div><div class="use">links</div></div>
+  <div class="row"><div class="dot" style="background:#F9FAFB"></div><div class="token">--color-bg-page</div><div class="use">canvas</div></div>
+  <div class="row"><div class="dot" style="background:#FFFFFF"></div><div class="token">--color-bg-surface</div><div class="use">cards</div></div>
+  <div class="row"><div class="dot" style="background:#245ABC"></div><div class="token">--color-bg-brand</div><div class="use">nav, hero</div></div>
+  <div class="row"><div class="dot" style="background:#0E214B"></div><div class="token">--color-bg-brand-dark</div><div class="use">footer</div></div>
+  <div class="row"><div class="dot" style="background:#D1D5DB"></div><div class="token">--color-border-default</div><div class="use">dividers</div></div>
+  <div class="row"><div class="dot" style="background:#245ABC"></div><div class="token">--color-border-focus</div><div class="use">focus ring</div></div>
+</div>
+</body></html>

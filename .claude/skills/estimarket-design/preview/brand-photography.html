@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--color-bg-surface); display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .frame { position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; color: #fff; }
+  .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .a { background: linear-gradient(135deg, #6B7280 0%, #374151 60%, #111827 100%); }
+  .b { background: linear-gradient(160deg, #F5C842 0%, #E85D26 55%, #C04E18 100%); }
+  .scrim-dark { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,33,75,0.60) 0%, rgba(14,33,75,0) 60%); }
+  .scrim-light { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(255,255,255,0.70) 0%, rgba(255,255,255,0) 60%); }
+  .label { position: absolute; bottom: 14px; left: 16px; right: 16px; }
+  .title { font-family: var(--font-body); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+  .sub { font-size: 12px; opacity: 0.92; margin-top: 2px; }
+  .light .title, .light .sub { color: #0E214B; }
+  .tag { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-muted); margin-top: 6px; }
+</style></head><body>
+<div>
+  <div class="frame">
+    <div class="photo a"></div>
+    <div class="scrim-dark"></div>
+    <div class="label"><div class="title">Kitchen remodels, fully bid</div><div class="sub">Avg. 4 bids in 48 hours</div></div>
+  </div>
+  <div class="tag">Dark scrim · rgba(14,33,75,0.60) → 0</div>
+</div>
+<div>
+  <div class="frame light">
+    <div class="photo b"></div>
+    <div class="scrim-light"></div>
+    <div class="label"><div class="title">Decks &amp; outdoor builds</div><div class="sub">Licensed pros near you</div></div>
+  </div>
+  <div class="tag">Light scrim · rgba(255,255,255,0.70) → 0</div>
+</div>
+</body></html>

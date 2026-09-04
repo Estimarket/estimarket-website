@@ -1,0 +1,157 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{
+    margin:0;padding:24px;
+    background:var(--color-bg-surface);
+    font-family:var(--font-body);
+    color:var(--color-text-primary);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr 1fr;
+    gap:14px;
+  }
+  .tile{
+    border:1px solid #E5E7EB;
+    border-radius:12px;
+    padding:22px;
+    display:flex;flex-direction:column;
+    justify-content:space-between;
+    min-height:152px;
+    position:relative;
+    background:#fff;
+  }
+  .tile.dark{background:#0E214B;border-color:#0E214B;}
+  .tile.cream{background:#F4F1EA;border-color:#E5E1D8;}
+  .tile.orange{background:#E85D26;border-color:#E85D26;}
+
+  .lockup{display:flex;align-items:center;justify-content:flex-start;flex:1;}
+  .lockup img{display:block;height:44px;width:auto;}
+  .marks{display:flex;align-items:center;justify-content:flex-start;gap:24px;flex:1;}
+  .marks img{display:block;height:56px;width:56px;}
+
+  .cap{
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.04em;
+    color:var(--color-text-muted);
+    margin-top:14px;
+  }
+  .tile.dark .cap,.tile.orange .cap{color:rgba(255,255,255,0.65);}
+  .tile.cream .cap{color:#8A8A8A;}
+
+  .badge{
+    position:absolute;top:14px;right:14px;
+    font-family:var(--font-mono);
+    font-size:9px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:#E85D26;
+    font-weight:600;
+  }
+
+  .tag{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:13px;
+    color:#0E214B;
+    margin-top:6px;
+  }
+
+  .ic{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .ic .px{
+    font-family:var(--font-mono);
+    font-size:9px;letter-spacing:0.08em;
+    color:var(--color-text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="grid">
+
+  <!-- Primary lockup -->
+  <div class="tile" style="grid-column:span 2;">
+    <span class="badge">Primary</span>
+    <div class="lockup">
+      <img src="../assets/lockup-color.png" alt="Estimarket primary lockup" style="height:56px"/>
+    </div>
+    <div>
+      <div class="tag">Contractors compete. You choose.</div>
+      <div class="cap">lockup-color.png · default expression</div>
+    </div>
+  </div>
+
+  <!-- Mark variations -->
+  <div class="tile">
+    <div class="marks">
+      <div class="ic">
+        <img src="../assets/mark-color.png" alt="Bid-bars mark"/>
+        <div class="px">COLOR</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/mark-mono-navy.png" alt="Mono navy mark"/>
+        <div class="px">MONO NAVY</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/mark-orange.png" alt="Orange knockout mark"/>
+        <div class="px">ORANGE</div>
+      </div>
+    </div>
+    <div class="cap">Mark · standalone</div>
+  </div>
+
+  <!-- Reverse on navy -->
+  <div class="tile dark">
+    <div class="lockup">
+      <img src="../assets/lockup-reverse.png" alt="Reverse lockup" style="height:44px"/>
+    </div>
+    <div class="cap">Reverse · on navy #0E214B</div>
+  </div>
+
+  <!-- Full color on cream -->
+  <div class="tile cream">
+    <div class="lockup">
+      <img src="../assets/lockup-color.png" alt="Lockup on cream" style="height:44px"/>
+    </div>
+    <div class="cap">Full color · cream #F4F1EA</div>
+  </div>
+
+  <!-- Favicon ladder -->
+  <div class="tile" style="grid-column:span 3;">
+    <div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap;">
+      <div class="ic">
+        <img src="../assets/favicon-16-crisp.png" width="16" height="16" alt="" style="image-rendering:pixelated"/>
+        <div class="px">16 · CRISP</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/favicon-32.png" width="32" height="32" alt=""/>
+        <div class="px">32</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/favicon-48.png" width="48" height="48" alt=""/>
+        <div class="px">48</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/favicon-64.png" width="64" height="64" alt=""/>
+        <div class="px">64</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/favicon-96.png" width="96" height="96" alt=""/>
+        <div class="px">96</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/favicon-128.png" width="128" height="128" alt=""/>
+        <div class="px">128</div>
+      </div>
+      <div class="ic">
+        <img src="../assets/apple-touch-icon-180.png" width="128" height="128" alt="" style="border-radius:28px;box-shadow:var(--shadow-md)"/>
+        <div class="px">180 · iOS</div>
+      </div>
+    </div>
+    <div class="cap">Favicon ladder · pixel-snapped 16 px through 180 px iOS export</div>
+  </div>
+
+</div>
+</body></html>

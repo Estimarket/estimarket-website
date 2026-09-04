@@ -1,0 +1,53 @@
+/* Kit-specific layout helpers — design tokens come from ../../colors_and_type.css */
+
+body { background: var(--color-bg-page); }
+
+/* Photo placeholders: brand-tinted gradient stand-ins for real property imagery.
+   Vary hue with --photo-h to look photographic. */
+.photo {
+  background: linear-gradient(135deg,
+    hsl(calc(var(--photo-h, 210) * 1), 35%, 32%) 0%,
+    hsl(calc(var(--photo-h, 210) * 1 - 12), 28%, 22%) 65%,
+    hsl(calc(var(--photo-h, 210) * 1 - 24), 32%, 15%) 100%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.photo.warm {
+  background: linear-gradient(150deg,
+    hsl(calc(var(--photo-h, 30) * 1), 75%, 55%) 0%,
+    hsl(calc(var(--photo-h, 30) * 1 - 12), 65%, 38%) 65%,
+    hsl(calc(var(--photo-h, 30) * 1 - 22), 60%, 22%) 100%);
+}
+.photo.cool {
+  background: linear-gradient(135deg,
+    hsl(calc(var(--photo-h, 180) * 1), 30%, 60%) 0%,
+    hsl(calc(var(--photo-h, 180) * 1 - 10), 35%, 38%) 60%,
+    hsl(calc(var(--photo-h, 180) * 1 - 20), 40%, 22%) 100%);
+}
+
+.scrim-dark { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14,33,75,0.65) 0%, rgba(14,33,75,0.10) 50%, rgba(14,33,75,0) 100%); }
+
+.page-frame {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 0 var(--space-10);
+}
+@media (max-width: 768px) { .page-frame { padding: 0 var(--space-6); } }
+
+/* Smooth section rhythm */
+.section { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+.section-tight { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+
+/* Buttons / links cosmetic helpers */
+.link-ghost { color: var(--color-primary); font-weight: 600; cursor: pointer; }
+.link-ghost:hover { color: var(--color-primary-dark); }
+
+/* Card hover transitions */
+.card { transition: box-shadow var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out); }
+.card:hover { box-shadow: var(--shadow-md); }
+.card:hover .photo { transform: scale(1.02); }
+.card .photo { transition: transform var(--duration-normal) var(--ease-out); will-change: transform; }
+
+/* Hide focus rings until keyboard nav */
+button { font: inherit; }
