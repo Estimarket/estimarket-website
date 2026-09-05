@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--color-bg-surface); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { aspect-ratio: 1.3 / 1; border-radius: var(--radius-md); border: 1px solid rgba(14,33,75,0.06); }
+  .name { font-size: 12px; font-weight: 600; color: var(--color-text-primary); }
+  .role { font-size: 11px; color: var(--color-text-muted); }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted); }
+</style></head><body>
+<div class="row">
+  <div class="sw"><div class="chip" style="background:#E85D26"></div><div class="name">Sunset</div><div class="role">Primary CTA</div><div class="hex">#E85D26</div></div>
+  <div class="sw"><div class="chip" style="background:#C04E18"></div><div class="name">Ember</div><div class="role">Orange hover</div><div class="hex">#C04E18</div></div>
+  <div class="sw"><div class="chip" style="background:#8FC089"></div><div class="name">Sage</div><div class="role">Success, eco</div><div class="hex">#8FC089</div></div>
+  <div class="sw"><div class="chip" style="background:#F5C842"></div><div class="name">Golden Valley</div><div class="role">Ratings, stars</div><div class="hex">#F5C842</div></div>
+</div>
+</body></html>

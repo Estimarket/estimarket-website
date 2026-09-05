@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 22px 20px; background: var(--color-bg-surface); display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .label { font-size: 14px; font-weight: 600; color: var(--color-text-primary); letter-spacing: 0.01em; }
+  .input { height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid #D1D5DB; background: #fff; font-size: 16px; color: var(--color-text-primary); }
+  .input::placeholder { color: var(--color-text-muted); }
+  .focus { border: 2px solid #245ABC; padding: 0 13px; outline: none; }
+  .error { border: 2px solid #DC2626; background: #FEF2F2; padding: 0 13px; }
+  .err-msg { font-size: 12px; color: #DC2626; margin-top: 4px; }
+  .disabled { background: #F3F4F6; border: 1px solid #E5E7EB; color: var(--color-text-muted); }
+  .help { font-size: 12px; color: var(--color-text-muted); margin-top: 4px; }
+</style></head><body>
+<div class="field"><div class="label">Email</div><input class="input" placeholder="you@example.com"><div class="help">We'll never share your email.</div></div>
+<div class="field"><div class="label">Check-in date</div><input class="input focus" value="May 14, 2026"></div>
+<div class="field"><div class="label">Guests</div><input class="input error" value="0"><div class="err-msg">Add at least 1 guest.</div></div>
+<div class="field"><div class="label">Property ID</div><input class="input disabled" value="EM-92831" disabled></div>
+</body></html>

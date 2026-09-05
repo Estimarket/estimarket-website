@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 30px 20px; background: var(--color-bg-page); }
+  .bar { display: flex; align-items: stretch; background: #fff; border-radius: 16px; box-shadow: 0 10px 15px rgba(14,33,75,0.10), 0 4px 6px rgba(14,33,75,0.05); overflow: hidden; }
+  .field { flex: 1; padding: 12px 18px; border-right: 1px solid #E5E7EB; display: flex; flex-direction: column; gap: 2px; cursor: pointer; }
+  .field:hover { background: #F9FAFB; }
+  .field.active { background: #E8F2FF; }
+  .label { font-size: 11px; font-weight: 600; color: var(--color-text-primary); letter-spacing: 0.02em; text-transform: uppercase; }
+  .value { font-size: 14px; color: var(--color-text-secondary); }
+  .value.placeholder { color: var(--color-text-muted); }
+  .cta { display: flex; align-items: center; justify-content: center; background: #E85D26; color: #fff; padding: 0 24px; margin: 8px; border-radius: 12px; gap: 6px; font-weight: 600; font-size: 14px; }
+</style></head><body>
+<div class="bar">
+  <div class="field active"><div class="label">Where</div><div class="value">Aspen, Colorado</div></div>
+  <div class="field"><div class="label">Check in</div><div class="value">May 14</div></div>
+  <div class="field"><div class="label">Check out</div><div class="value">May 21</div></div>
+  <div class="field"><div class="label">Guests</div><div class="value">6 guests</div></div>
+  <div class="cta"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Search</div>
+</div>
+</body></html>

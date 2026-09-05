@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px 20px; background: var(--color-bg-surface); display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; align-items: center; gap: 10px; }
+  .star { color: #F5C842; font-size: 18px; line-height: 1; }
+  .star.empty { color: #D1D5DB; }
+  .label { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+  .meta { font-size: 14px; color: var(--color-text-muted); }
+  .histo { display: grid; grid-template-columns: 70px 200px 50px; gap: 10px; align-items: center; font-size: 13px; color: var(--color-text-secondary); }
+  .track { height: 6px; background: #F3F4F6; border-radius: 3px; overflow: hidden; }
+  .fill { height: 100%; background: #245ABC; }
+</style></head><body>
+<div class="row"><span class="star">★</span><span class="label">4.8</span><span class="meta">· 312 reviews</span></div>
+<div class="row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span><span class="meta" style="margin-left:6px">4 out of 5</span></div>
+<div class="histo"><span>5 stars</span><div class="track"><div class="fill" style="width:78%"></div></div><span>78%</span></div>
+<div class="histo"><span>4 stars</span><div class="track"><div class="fill" style="width:18%"></div></div><span>18%</span></div>
+<div class="histo"><span>3 stars</span><div class="track"><div class="fill" style="width:3%"></div></div><span>3%</span></div>
+</body></html>

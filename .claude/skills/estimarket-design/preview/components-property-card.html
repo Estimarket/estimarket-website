@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--color-bg-page); display: flex; gap: 20px; justify-content: center; }
+  .card { width: 280px; background: #fff; border-radius: 12px; box-shadow: 0 1px 3px rgba(14,33,75,0.10), 0 1px 2px rgba(14,33,75,0.06); overflow: hidden; transition: box-shadow var(--duration-normal) var(--ease-out); }
+  .card:hover { box-shadow: 0 4px 6px rgba(14,33,75,0.08), 0 2px 4px rgba(14,33,75,0.06); }
+  .photo { aspect-ratio: 4/3; background: linear-gradient(140deg, #245ABC 0%, #0E214B 100%); position: relative; }
+  .photo.alt { background: linear-gradient(135deg, #E85D26 0%, #C04E18 100%); }
+  .heart { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 9999px; background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center; color: #245ABC; }
+  .body { padding: 14px 16px; }
+  .rating { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 4px; }
+  .rating .star { color: #F5C842; }
+  .reviews { color: var(--color-text-muted); font-weight: 400; }
+  .title { font-size: 16px; font-weight: 600; color: var(--color-text-primary); line-height: 1.35; margin-bottom: 2px; }
+  .meta { font-size: 13px; color: var(--color-text-muted); margin-bottom: 8px; }
+  .price { font-size: 18px; font-weight: 700; color: var(--color-text-primary); }
+  .total { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+  .h-svg { width: 16px; height: 16px; }
+</style></head><body>
+<div class="card">
+  <div class="photo">
+    <div class="heart"><svg class="h-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="rating"><span class="star">★</span> 4.8 <span class="reviews">· 312 reviews</span></div>
+    <div class="title">Cabin in Aspen, Colorado</div>
+    <div class="meta">6 guests · 3 beds · 2 baths</div>
+    <div class="price">$320 / night</div>
+    <div class="total">$1,920 total before taxes</div>
+  </div>
+</div>
+<div class="card">
+  <div class="photo alt">
+    <div class="heart" style="color:#E85D26"><svg class="h-svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+  </div>
+  <div class="body">
+    <div class="rating"><span class="star">★</span> 4.9 <span class="reviews">· 87 reviews</span></div>
+    <div class="title">Oceanfront villa, Malibu</div>
+    <div class="meta">8 guests · 4 beds · 3 baths</div>
+    <div class="price">$540 / night</div>
+    <div class="total">$3,240 total before taxes</div>
+  </div>
+</div>
+</body></html>
