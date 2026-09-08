@@ -40,3 +40,23 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 Every PR gets a Vercel preview built with the Preview env scope, which points the
 founder CTA and spots meter at the staging platform (`stg.estimarket.com`) in
 `signup` mode. Use the preview URL to test the founder sign-up flow end to end.
+
+## Slack waitlist alerts (EST-144)
+
+Every new `waitlist_signups` row posts one Block Kit message to Slack: email, role, zip, source,
+and — when the sign-up arrived via the founding ref — the running founding-waitlist count against
+the cohort cap and a reminder to hand them off to real sign-up (EST-92). It fires from the
+`joinWaitlist` server action inside `after()` (see `src/app/lib/slackWaitlistAlerts.server.ts`),
+only for a genuinely new row (duplicates and honeypot hits are silent), and is best-effort:
+failures are logged as `[slack-waitlist]`, never shown to the visitor.
+
+- **Env:** `SLACK_SIGNUPS_WEBHOOK_URL` — Slack incoming-webhook URL. Unset = no alerts. Same
+  variable name and webhook as the platform's contractor sign-up alert (EST-126), so one channel
+  hears about both. Set it on Vercel project `project-xzuw7`; Production only unless you want PR
+  previews to post too (their messages carry a `[preview]` prefix).
+- **Verify:** submit the form on a PR preview with the var set on the Preview scope, or run
+  `npm run dev` with the var in `.env.local` and submit at `/waitlist/homeowner`. Expect one
+  message; submit the same email again and expect none.
+- **Mute:** delete the var and redeploy.
+- **Tests:** `npm test` (message layout, environment rule, poster never throws).
+

@@ -1,7 +1,9 @@
 "use server";
 
+import { after } from "next/server";
 import { z } from "zod";
 import { supabaseAdmin } from "@/app/lib/supabaseServer";
+import { notifyWaitlistSignup } from "@/app/lib/slackWaitlistAlerts.server";
 
 const WaitlistSchema = z.object({
   email: z.string().email(),
@@ -39,5 +41,16 @@ export async function joinWaitlist(_prev: unknown, formData: FormData) {
     });
     return { ok: false, error: "Something went wrong. Please retry." };
   }
+
+  // Slack alert (EST-144). Only for a genuinely new row — duplicates and the honeypot returned
+  // above. Runs after the response is sent so Slack latency or an outage never slows the form.
+  after(() =>
+    notifyWaitlistSignup({
+      email: signup.email,
+      zipCode: signup.zip_code,
+      role: signup.role,
+      source: signup.source ?? null,
+    })
+  );
   return { ok: true, zip: signup.zip_code };
 }
