@@ -1,6 +1,12 @@
-import Image from "next/image";
+import type { ReactNode } from "react";
 import { ButtonLink } from "./components/Button";
 import CTABand from "./components/CTABand";
+import HeroComposition from "./components/home/HeroComposition";
+import StepScopeStill from "./components/home/StepScopeStill";
+import MarketplaceScene from "./components/home/MarketplaceScene";
+import BidScene from "./components/home/BidScene";
+import CompareBidsStill from "./components/home/CompareBidsStill";
+import WalkthroughStill from "./components/home/WalkthroughStill";
 
 // Title and description are inherited from the root layout; this only pins the
 // homepage's canonical URL so it can't be attributed to the apex host.
@@ -14,46 +20,15 @@ const HERO_PERKS = [
   "Bids in 36 hours, avg.",
 ];
 
-function BidsCard({ className }: { className?: string }) {
-  // The source mockup is tall (bids + schedule); we clip to show only the
-  // top "side-by-side bids" portion, matching the Figma hero crop.
-  return (
-    <div
-      className={`overflow-hidden rounded-xl bg-white shadow-2xl ${className ?? ""}`}
-      style={{ aspectRatio: "984 / 445" }}
-    >
-      <Image
-        src="/images/hero-mockup.png"
-        alt="Side-by-side contractor bids"
-        width={984}
-        height={830}
-        priority
-        className="h-auto w-full"
-      />
-    </div>
-  );
-}
-
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-navy lg:h-[740px]">
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        {/* Navy gradient: solid on the left, fading to transparent ~70% across */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0e214b_0%,#0e214b_22%,rgba(14,33,75,0.6)_46%,rgba(14,33,75,0)_72%)]" />
-        {/* Slight base scrim for mobile readability */}
-        <div className="absolute inset-0 bg-navy/35 lg:hidden" />
-      </div>
+      {/* One radial replaces the old photo + scrim: the hero is now a product
+          composition on navy, not a photograph. */}
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_72%_8%,rgba(36,90,188,0.42),transparent_62%)]" />
 
-      <div className="relative mx-auto flex h-full max-w-[1440px] items-center px-5 sm:px-6 lg:px-20">
-        <div className="max-w-[640px] py-16 lg:py-0">
+      <div className="relative mx-auto flex h-full max-w-[1440px] flex-wrap items-center gap-x-10 gap-y-12 px-5 py-16 sm:px-6 lg:px-20 lg:py-0">
+        <div className="min-w-0 max-w-[640px] flex-[1_1_420px]">
           <h1 className="text-[40px] font-bold leading-[1.05] text-white sm:text-[56px] lg:text-[64px]">
             The first{" "}
             <span className="underline decoration-2 underline-offset-4">real</span>{" "}
@@ -85,23 +60,9 @@ function Hero() {
             ))}
           </ul>
         </div>
-      </div>
 
-      {/* Floating product cards (desktop) */}
-      <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
-        <div className="relative mx-auto h-full max-w-[1440px]">
-          <Image
-            src="/images/hero-card-brief.png"
-            alt="Project brief preview"
-            width={454}
-            height={288}
-            priority
-            className="absolute left-[68.5%] top-[207px] w-[31.5%] drop-shadow-2xl"
-          />
-          <BidsCard className="absolute left-[46.4%] top-[489px] w-[33.2%]" />
-        </div>
+        <HeroComposition />
       </div>
-
     </section>
   );
 }
@@ -257,9 +218,8 @@ type Step = {
   title: string;
   body: string;
   chip: string;
-  img: string;
-  w: number;
-  h: number;
+  /** The slot's imagery, built from real product elements. */
+  slot: ReactNode;
 };
 
 const STEPS: Step[] = [
@@ -270,9 +230,7 @@ const STEPS: Step[] = [
     title: "Homeowners describe their project, and we scope it out.",
     body: "Answer a few guided questions and snap some photos. Estimarket turns it into an estimator-quality brief — itemized labor, measurements, and materials list — the same scope a pro would write after a site visit.",
     chip: "Homeowners save hours of extra visits",
-    img: "/images/step-1-guided-scope@3x.png",
-    w: 1788,
-    h: 1734,
+    slot: <StepScopeStill />,
   },
   {
     n: "2",
@@ -281,9 +239,7 @@ const STEPS: Step[] = [
     title: "Projects are posted to an open marketplace for contractors in the area.",
     body: "Your structured scope goes live for qualified contractors who match your trade and service area. Homeowner personal information is protected as you go.",
     chip: "Live: accepting bids",
-    img: "/images/step-2-marketplace@3x.png",
-    w: 1788,
-    h: 1788,
+    slot: <MarketplaceScene />,
   },
   {
     n: "3",
@@ -292,9 +248,7 @@ const STEPS: Step[] = [
     title: "Contractors review and bid – without a home visit.",
     body: "Pros review the entire scope and submit a labor-only bid that includes questions or callouts for TBD items. Bid on all labor items or just share a daily labor rate. Bids are always a range, never a commitment to an exact price.",
     chip: "Contractors don’t pay to bid, and save a site visit",
-    img: "/images/step-3-contractor-bid@3x.png",
-    w: 1788,
-    h: 1746,
+    slot: <BidScene />,
   },
   {
     n: "4",
@@ -303,9 +257,7 @@ const STEPS: Step[] = [
     title: "Homeowners compare bids side by side and choose their favorite.",
     body: "Every bid lands in one place, itemized and normalized. Compare across price, rating, or start date at a glance — then pick the one that fits best with your needs.",
     chip: "Homeowners see what their project should cost",
-    img: "/images/step-4-compare-bids@3x.png",
-    w: 1788,
-    h: 1713,
+    slot: <CompareBidsStill />,
   },
   {
     n: "5",
@@ -314,9 +266,7 @@ const STEPS: Step[] = [
     title: "Meet for a walkthrough to finalize the project and get to work.",
     body: "Schedule one walkthrough — now the homeowner and contractor review the bid details in person, lock the scope and start date, and move forward with the work. One visit, real numbers, done.",
     chip: "Both: on-site, in person",
-    img: "/images/step-5-walkthrough@3x.png",
-    w: 1788,
-    h: 1728,
+    slot: <WalkthroughStill />,
   },
 ];
 
@@ -376,13 +326,7 @@ function HowItWorks() {
                   step.tone === "contractor" ? "lg:order-1" : ""
                 }`}
               >
-                <Image
-                  src={step.img}
-                  alt=""
-                  width={step.w}
-                  height={step.h}
-                  className="mx-auto h-auto w-full max-w-[min(560px,calc(100dvw-2.5rem))]"
-                />
+                {step.slot}
               </div>
             </div>
           ))}

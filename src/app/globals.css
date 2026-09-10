@@ -32,6 +32,21 @@
   --color-band-faint: #668aad;
   --color-promo-dot: #8fc089;
 
+  /* Brand-tinted elevation. Shadows in this product are tinted with brand
+     navy, never neutral grey. Named `brand-*` so they sit alongside
+     Tailwind's greyscale defaults rather than replacing them — the home
+     imagery scenes and the campaign scenes use these. Values match the
+     `--sh-*` set in components/campaign/campaign.css. */
+  --shadow-brand-sm: 0 1px 3px rgba(14, 33, 75, 0.1), 0 1px 2px rgba(14, 33, 75, 0.06);
+  --shadow-brand-md: 0 4px 6px rgba(14, 33, 75, 0.08), 0 2px 4px rgba(14, 33, 75, 0.06);
+  --shadow-brand-lg: 0 10px 15px rgba(14, 33, 75, 0.1), 0 4px 6px rgba(14, 33, 75, 0.05);
+  --shadow-brand-xl: 0 20px 25px rgba(14, 33, 75, 0.12), 0 10px 10px rgba(14, 33, 75, 0.04);
+  --shadow-brand-2xl: 0 25px 50px rgba(14, 33, 75, 0.2);
+
+  /* Scene easing: `enter` for arrivals, `spring` for the notification drop. */
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-dm-serif);
   --font-mono: var(--font-geist-mono);
