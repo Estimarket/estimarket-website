@@ -104,28 +104,41 @@ export default function useSceneTimeline(
 
 /**
  * The reference's `countUp`: animates a value from 0 to `to` over `ms` with
- * cubic ease-out, feeding each frame to `set`. Frames are cancelled on
- * unmount so no state update can fire after the component is gone.
+ * cubic ease-out, feeding each frame to `set`. The frame in flight is
+ * cancelled on unmount so no state update can fire after the component is
+ * gone.
+ *
+ * One count-up at a time per hook instance — a second call supersedes the
+ * first. Two figures that must count independently need two instances, which
+ * is how BidBuilderScene's desktop and mobile totals are already wired.
  */
 export function useCountUp() {
-  const rafsRef = useRef<number[]>([]);
+  // A holder, not a list of every frame id ever requested. The hero scenes
+  // loop for as long as the page is open, so a list that grew by an id per
+  // frame would climb all session — roughly 18k entries an hour on the home
+  // hero. The holder is read in cleanup, so it has to be the stable object.
+  const rafRef = useRef({ id: 0 });
 
   useEffect(() => {
-    const rafs = rafsRef.current;
-    return () => {
-      rafs.forEach(cancelAnimationFrame);
-    };
+    const holder = rafRef.current;
+    return () => cancelAnimationFrame(holder.id);
   }, []);
 
   return useCallback((to: number, ms: number, set: (v: number) => void) => {
+    // A new target supersedes the one in flight. That is what the running
+    // totals want — each landing row re-aims the same figure — and it keeps a
+    // looping scene's previous cycle from writing over the reset frame when
+    // the stage leaves the viewport mid-count and comes back.
+    const holder = rafRef.current;
+    cancelAnimationFrame(holder.id);
     let start: number | null = null;
     const frame = (ts: number) => {
       if (start === null) start = ts;
       const p = Math.min((ts - start) / ms, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       set(Math.round(to * eased));
-      if (p < 1) rafsRef.current.push(requestAnimationFrame(frame));
+      holder.id = p < 1 ? requestAnimationFrame(frame) : 0;
     };
-    rafsRef.current.push(requestAnimationFrame(frame));
+    holder.id = requestAnimationFrame(frame);
   }, []);
 }
