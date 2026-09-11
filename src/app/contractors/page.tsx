@@ -1,6 +1,11 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { ButtonLink } from "../components/Button";
 import CTABand from "../components/CTABand";
+import CoHeroInbox from "../components/contractor/CoHeroInbox";
+import MarketplaceScene from "../components/contractor/MarketplaceScene";
+import BidBuilderScene from "../components/contractor/BidBuilderScene";
+import MatchCloseStill from "../components/contractor/MatchCloseStill";
 import PricingCards from "../components/PricingCards";
 
 export const metadata = {
@@ -18,22 +23,25 @@ const HERO_PERKS = [
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-navy lg:h-[640px]">
+    <section className="relative overflow-hidden bg-navy">
       <div className="absolute inset-0">
         <Image
-          src="/images/co-hero.png"
+          src="/images/co-hero.jpg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[70%_center]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0e214b_0%,rgba(36,90,188,0)_72%)]" />
         <div className="absolute inset-0 bg-navy/40 lg:hidden" />
       </div>
 
-      <div className="relative mx-auto flex h-full max-w-[1440px] items-center px-5 sm:px-6 lg:px-20">
-        <div className="max-w-[620px] py-16 lg:py-0">
+      {/* Two columns at lg, the card wrapping away below it. The section is
+          content-sized rather than a fixed 640px because the pills are
+          positioned as percentages of this container. */}
+      <div className="relative mx-auto flex max-w-[1440px] flex-wrap items-center gap-x-10 gap-y-12 px-5 pb-[72px] pt-16 sm:px-6 lg:px-20">
+        <div className="min-w-0 max-w-[620px] flex-[1_1_420px]">
           <h1 className="text-[40px] font-bold leading-[1.08] text-white sm:text-[56px] lg:text-[64px]">
             A more{" "}
             <span className="font-serif font-normal italic text-brand">
@@ -63,25 +71,8 @@ function Hero() {
             ))}
           </ul>
         </div>
-      </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
-        <div className="relative mx-auto h-full max-w-[1440px]">
-          <Image
-            src="/images/co-hero-card.png"
-            alt="Project inbox with matching projects"
-            width={1200}
-            height={920}
-            priority
-            className="absolute left-[61.9%] top-[233px] w-[32.7%] drop-shadow-2xl"
-          />
-          <span className="absolute left-[84.3%] top-[177px] rounded-full bg-[#16a34a] px-5 py-3.5 text-base font-bold text-white shadow-lg">
-            Bid won +$37,850
-          </span>
-          <span className="absolute left-[56.25%] top-[550px] rounded-full bg-accent px-5 py-3.5 text-base font-bold text-white shadow-lg">
-            New matching project in your area
-          </span>
-        </div>
+        <CoHeroInbox />
       </div>
     </section>
   );
@@ -203,9 +194,8 @@ type HowStep = {
   title: string;
   body: string;
   bullets: { lead: string; desc: string }[];
-  img: string;
-  w: number;
-  h: number;
+  /** The slot's imagery, built from real product elements. */
+  slot: ReactNode;
   imageRight: boolean;
   shaded?: boolean;
 };
@@ -235,9 +225,7 @@ const HOW_STEPS: HowStep[] = [
         desc: "Know what’s undecided before you price it.",
       },
     ],
-    img: "/images/co-step1.png",
-    w: 644,
-    h: 484,
+    slot: <MarketplaceScene />,
     imageRight: true,
   },
   {
@@ -257,9 +245,7 @@ const HOW_STEPS: HowStep[] = [
         desc: "No intermediary once they choose you.",
       },
     ],
-    img: "/images/co-step2.png",
-    w: 644,
-    h: 484,
+    slot: <BidBuilderScene />,
     imageRight: false,
     shaded: true,
   },
@@ -282,9 +268,7 @@ const HOW_STEPS: HowStep[] = [
         desc: "Keep your own contracts and payment process for starting the work.",
       },
     ],
-    img: "/images/co-step3.png",
-    w: 624,
-    h: 440,
+    slot: <MatchCloseStill />,
     imageRight: true,
   },
 ];
@@ -346,13 +330,7 @@ function HowItWorks() {
             <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-20">
               <StepText step={step} />
               <div className={step.imageRight ? "" : "lg:order-1"}>
-                <Image
-                  src={step.img}
-                  alt=""
-                  width={step.w}
-                  height={step.h}
-                  className="h-auto w-full drop-shadow-xl"
-                />
+                {step.slot}
               </div>
             </div>
           </div>
