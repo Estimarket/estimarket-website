@@ -36,17 +36,74 @@ export {
   TBD_ITEM,
 };
 
-/** The project that arrives during the hero and step-2 animations. */
+/** The project that arrives during the hero and step-2 animations, and the
+ * one /homeowners follows end to end. */
 export const KITCHEN = {
   title: "Wash Park kitchen",
   neighborhood: "Wash Park",
   cardMeta: "Wash Park, Denver · 2m ago · 12 photos",
+  /** Full listing meta, as the homeowner's own project page shows it. */
+  listingMeta: "Denver, CO 80209 · 12×14 ft · 12 photos · $38,000 budget",
   categoryChip: "Kitchen remodel",
   budget: 38000,
   roomSize: "12×14 ft",
   photoCount: 12,
+  scopeItemCount: 14,
   bidCount: 4,
   photo: "/images/home-kitchen-before.jpg",
+  homeowner: { name: "Sarah K.", initials: "SK" },
+};
+
+/** The homeowner's scope — no prices. A scope carries the budget (one figure)
+ * and the work; contractors add the money later. Do not add amounts here. */
+export const KITCHEN_SCOPE = [
+  "Remove all cabinetry, counters and appliances; keep the footprint.",
+  "Set 22 lin ft of new base + wall cabinets, homeowner supplied.",
+  "Template + install quartz counters, tile backsplash 32 sq ft.",
+];
+
+/** A homeowner may mark a scope item TBD; contractors then quote an
+ * allowance for it. That is different from a contractor's TBD line item,
+ * which is excluded from the bid total entirely. */
+export const KITCHEN_TBD =
+  "Panel capacity for the new range circuit — contractors can quote an allowance.";
+
+/** The guided scope-builder questions answered in step 01. */
+export const SCOPE_QUESTIONS = [
+  { prompt: "Are you keeping the current layout?", answer: "Yes — same footprint" },
+  { prompt: "What are we replacing?", answer: "Cabinets · counters · backsplash" },
+  { prompt: "Any electrical changes?", answer: "Range circuit + 4 outlets" },
+];
+
+/** Photos on the kitchen listing, in the order the thumb strips show them. */
+export const KITCHEN_THUMBS = [
+  KITCHEN.photo,
+  "/images/home-floors.jpg",
+  "/images/dfc-vanity.jpg",
+];
+
+/** Step 03: the conversation with the chosen pro, already bid-selected.
+ * "Bid selected" is the real chip for outcome === "site_visit" | "accepted". */
+export const THREAD = {
+  contact: "Dana M.",
+  presence: "Typically replies within an hour",
+  dayPill: "Tuesday, Sep 15",
+  messages: [
+    {
+      from: "contractor" as const,
+      initials: "MC",
+      time: "9:42 AM",
+      body: "Bid’s in — I priced the range circuit as an allowance until we confirm the panel. Is it in the garage?",
+      mobileBody: "Happy to hold the range — is the panel in the garage?",
+    },
+    {
+      from: "homeowner" as const,
+      initials: "SK",
+      time: "9:44 AM",
+      body: "It is. Going with your bid — Thursday at 2:00 for the walkthrough?",
+      mobileBody: "It is — I’ll add a photo to the scope.",
+    },
+  ],
 };
 
 /** The bath behind the hero's bid-comparison card and all of step 3. */
@@ -198,7 +255,8 @@ export type CompareBid = Bid & {
   lineItems: number;
   /** Relative start, as the real BidsList renders it. */
   startDate: string;
-  /** Whether the range sits inside the homeowner's budget. */
+  /** Whether the midpoint sits inside the homeowner's budget — the
+   * comparison the product tells homeowners to make. */
   withinBudget: boolean;
   /** The real `outcome === "site_visit"` state — CTA reads "Visit requested". */
   visitRequested?: boolean;
@@ -248,7 +306,9 @@ export const COMPARE_BIDS: CompareBid[] = [
     tbds: 2,
     lineItems: 9,
     startDate: "Starts in 5 weeks",
-    withinBudget: true,
+    // Midpoint $39,200 is over the $38,000 budget, so no chip — homeowners
+    // compare the midpoint, and Foothills above is treated the same way.
+    withinBudget: false,
   },
   {
     initials: "FC",

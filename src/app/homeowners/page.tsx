@@ -1,6 +1,11 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { ButtonLink } from "../components/Button";
 import CTABand from "../components/CTABand";
+import HoHeroBids from "../components/home/HoHeroBids";
+import ScopeBuilderScene from "../components/home/ScopeBuilderScene";
+import BidsArrivingScene from "../components/home/BidsArrivingScene";
+import SelectedBidStill from "../components/home/SelectedBidStill";
 
 export const metadata = {
   title: "For homeowners — Estimarket",
@@ -19,13 +24,14 @@ function Hero() {
   return (
     <section className="relative overflow-hidden bg-navy lg:h-[740px]">
       <div className="absolute inset-0">
+        {/* 62% keeps the handshake and clipboard clear of the navy gradient. */}
         <Image
           src="/images/ho-hero.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[62%_center]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0e214b_0%,rgba(36,90,188,0)_56%)]" />
         <div className="absolute inset-0 bg-navy/35 lg:hidden" />
@@ -61,14 +67,9 @@ function Hero() {
 
       <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
         <div className="relative mx-auto h-full max-w-[1440px]">
-          <Image
-            src="/images/ho-hero-card.png"
-            alt="Side-by-side bids and walkthrough scheduling"
-            width={1248}
-            height={1324}
-            priority
-            className="absolute left-[53.8%] top-[78px] w-[43.3%] drop-shadow-2xl"
-          />
+          <div className="absolute left-[53.8%] top-[78px] w-[43.3%] drop-shadow-2xl">
+            <HoHeroBids />
+          </div>
         </div>
       </div>
     </section>
@@ -181,9 +182,8 @@ type HowStep = {
   title: string;
   body: string;
   bullets: string[];
-  img: string;
-  w: number;
-  h: number;
+  /** The slot's imagery, built from real product elements. */
+  slot: ReactNode;
   imageRight: boolean;
   shaded?: boolean;
 };
@@ -199,9 +199,7 @@ const HOW_STEPS: HowStep[] = [
       "No measuring tape needed. Just scan your project and snap photos.",
       "Not sure about something? Mark it TBD — contractors can still quote an allowance for the item.",
     ],
-    img: "/images/ho-step1.png",
-    w: 624,
-    h: 448,
+    slot: <ScopeBuilderScene />,
     imageRight: true,
   },
   {
@@ -214,9 +212,7 @@ const HOW_STEPS: HowStep[] = [
       "No site visits required — bids come from your project listing, not from an hour at your kitchen table.",
       "Side-by-side line items — drill into demo, materials, labor; see which bid is doing the work.",
     ],
-    img: "/images/ho-step2.png",
-    w: 624,
-    h: 521,
+    slot: <BidsArrivingScene />,
     imageRight: false,
     shaded: true,
   },
@@ -230,9 +226,7 @@ const HOW_STEPS: HowStep[] = [
       "Schedule one walkthrough — pick a slot with the pro you’ve chosen and confirm allowances.",
       "Sign and start — contract, deposit, and start date all from the project page.",
     ],
-    img: "/images/ho-step3.png",
-    w: 624,
-    h: 594,
+    slot: <SelectedBidStill />,
     imageRight: true,
   },
 ];
@@ -295,13 +289,7 @@ function HowItWorks() {
             <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-20">
               <StepText step={step} />
               <div className={step.imageRight ? "" : "lg:order-1"}>
-                <Image
-                  src={step.img}
-                  alt=""
-                  width={step.w}
-                  height={step.h}
-                  className="h-auto w-full drop-shadow-xl"
-                />
+                {step.slot}
               </div>
             </div>
           </div>

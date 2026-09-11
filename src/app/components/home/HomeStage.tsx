@@ -124,6 +124,38 @@ export function StepSlot({
   );
 }
 
+/**
+ * A slot with no card chrome, for /homeowners: the images those slots replace
+ * are bare `drop-shadow-xl` PNGs, so each composition is transparent and its
+ * own cards carry the shadow. Otherwise it behaves like `StepSlot` — one
+ * timeline drives both separately-authored compositions, and `rootRef` sits on
+ * a wrapper present at every breakpoint.
+ */
+export function BareSlot({
+  desktop,
+  mobile,
+  rootRef,
+}: {
+  desktop: { w: number; h: number; content: ReactNode };
+  mobile: { w: number; h: number; content: ReactNode };
+  rootRef?: RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <div ref={rootRef} aria-hidden="true" className="w-full select-none">
+      <div className="hidden sm:block">
+        <ScaledStage w={desktop.w} h={desktop.h}>
+          {desktop.content}
+        </ScaledStage>
+      </div>
+      <div className="sm:hidden">
+        <ScaledStage w={mobile.w} h={mobile.h}>
+          {mobile.content}
+        </ScaledStage>
+      </div>
+    </div>
+  );
+}
+
 /** Enter transition shared by every arriving element in these scenes. */
 export const enter = (ms = 380, transformMs = 420) =>
   `opacity ${ms}ms var(--ease-enter), transform ${transformMs}ms var(--ease-enter)`;
