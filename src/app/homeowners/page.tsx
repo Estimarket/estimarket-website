@@ -26,7 +26,7 @@ function Hero() {
       <div className="absolute inset-0">
         {/* 62% keeps the handshake and clipboard clear of the navy gradient. */}
         <Image
-          src="/images/ho-hero.png"
+          src="/images/ho-hero.jpg"
           alt=""
           fill
           priority
