@@ -1,7 +1,7 @@
 import { dollars, midpoint, type CompareBid } from "./homeDemoData";
 
 // The homeowner's bid row from apps/web (homeowner)/projects/[jobId]/BidsList.tsx,
-// in the three sizes /homeowners uses: the hero's All Bids card, the step-02
+// in the three sizes /homeowners uses: the hero's compare column, the step-02
 // live feed, and the compact mobile list.
 //
 // A contractor's bid is always a range; the `est.` beneath it is the midpoint,
@@ -82,63 +82,68 @@ function Range({
   );
 }
 
-/** The hero's All Bids card rows — the fullest treatment: NEW badge, chips
- * and, on all but the last row, the two CTAs. */
-export function HeroBidRow({ bid, cta }: { bid: CompareBid; cta: boolean }) {
-  const chosen = bid.visitRequested;
+/**
+ * The /homeowners hero's compare rows — NEW badge, chips and the range, at the
+ * size the hero's right-hand column allows. No CTAs: the hero is showing bids
+ * arriving, and the actions belong to the real screen.
+ */
+export function HeroCompareRow({
+  bid,
+  style,
+}: {
+  bid: CompareBid;
+  style?: React.CSSProperties;
+}) {
   return (
     <div
-      className="flex items-center gap-3 rounded-[12px] p-3"
-      style={
-        chosen
-          ? {
-              border: "1.5px solid var(--color-accent)",
-              boxShadow: "var(--shadow-brand-md)",
-            }
-          : {
-              border: "1px solid var(--color-line)",
-              boxShadow: cta ? "var(--shadow-brand-sm)" : undefined,
-            }
-      }
+      className="flex items-center gap-[9px] rounded-[12px] border border-[#D1D5DB] bg-white p-[9px_10px] shadow-brand-sm"
+      style={style}
     >
-      <Avatar initials={bid.initials} size={42} />
+      <Avatar initials={bid.initials} size={32} />
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-[7px]">
+        <div className="flex items-center gap-[5px]">
           {bid.isNew && (
-            <span className="rounded-[4px] bg-accent px-[6px] py-px text-[10px] font-bold text-white">
+            <span className="rounded-[4px] bg-accent px-1 py-px text-[8px] font-bold text-white">
               NEW
             </span>
           )}
-          <span className="text-[14px] font-bold tracking-[-0.01em] text-ink">
+          <span className="text-[12px] font-bold tracking-[-0.01em] text-ink">
             {bid.company}
           </span>
         </div>
-        <Meta bid={bid} size={11.5} city />
-        <div className="mt-[7px] flex flex-wrap gap-[6px]">
+        <Meta bid={bid} size={9.5} city />
+        <div className="mt-[5px] flex gap-1">
           {bid.tbds === 0 ? (
-            <Chip label="No TBDs" tone="good" size={10.5} />
+            <Chip label="No TBDs" tone="good" size={9} />
           ) : (
-            <Chip label={`${bid.tbds} TBDs`} tone="tbd" size={10.5} />
+            <Chip label={`${bid.tbds} TBDs`} tone="tbd" size={9} />
           )}
-          <Chip label={`${bid.lineItems} line items`} tone="neutral" size={10.5} />
-          {bid.withinBudget && (
-            <Chip label="Within budget" tone="good" size={10.5} />
-          )}
+          <Chip label={`${bid.lineItems} line items`} tone="neutral" size={9} />
+          {bid.withinBudget && <Chip label="Within budget" tone="good" size={9} />}
         </div>
       </div>
       <div className="flex-none text-right">
-        <Range bid={bid} size={16} estSize={11} />
-        {cta && (
-          <div className="mt-[9px] flex justify-end gap-[7px]">
-            <span className="inline-flex h-[30px] items-center whitespace-nowrap rounded-[7px] bg-accent px-3 text-[11.5px] font-bold text-white">
-              Schedule visit
-            </span>
-            <span className="inline-flex h-[30px] items-center whitespace-nowrap rounded-[7px] border border-line bg-white px-3 text-[11.5px] font-semibold text-ink">
-              View bid
-            </span>
-          </div>
-        )}
+        <Range bid={bid} size={12.5} estSize={9} />
       </div>
+    </div>
+  );
+}
+
+/** The dashed placeholder a bid row lands into. It sits over the real row so
+ * the column holds its height from the first frame — the list never grows as
+ * bids arrive. */
+export function BidSkeleton({ style }: { style?: React.CSSProperties }) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 flex items-center gap-[9px] rounded-[12px] border border-dashed border-[#D1D5DB] bg-white p-[9px_10px]"
+      style={style}
+    >
+      <span className="size-8 flex-none rounded-full bg-[#F3F4F6]" />
+      <div className="flex min-w-0 flex-1 flex-col gap-[6px]">
+        <span className="block h-2 w-[54%] rounded-full bg-[#F3F4F6]" />
+        <span className="block h-[7px] w-[34%] rounded-full bg-[#F3F4F6]" />
+      </div>
+      <span className="block h-[10px] w-[74px] flex-none rounded-full bg-[#F3F4F6]" />
     </div>
   );
 }

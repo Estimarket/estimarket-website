@@ -106,7 +106,7 @@ export const THREAD = {
   ],
 };
 
-/** The bath behind the hero's bid-comparison card and all of step 3. */
+/** The bath in step 3, and the first card in every marketplace grid. */
 export const BATH = {
   title: "West Highlands bath",
   cardMeta: "West Highlands, Denver · 1h ago · 4 photos",
@@ -142,8 +142,9 @@ export type MarketplaceCard = {
   arriving?: boolean;
 };
 
-/** Step 2's six-card grid, in grid order. The hero's smaller panel shows the
- * first card and the arriving one. */
+/** Step 2's six-card grid, in grid order. The home hero's contractor console
+ * shows a four-card cut of it: the first, second and fourth, plus the arriving
+ * Wash Park kitchen. */
 export const MARKETPLACE_CARDS: MarketplaceCard[] = [
   {
     id: "west-highlands",
@@ -226,28 +227,6 @@ export type Bid = {
 /** A bid's midpoint, rounded to the nearest $50 — what homeowners compare. */
 export const midpoint = (b: Pick<Bid, "min" | "max">) =>
   Math.round((b.min + b.max) / 2 / 50) * 50;
-
-/** The two rows in the hero's bid-comparison card (the West Highlands bath). */
-export const HERO_BIDS: Bid[] = [
-  {
-    initials: "BR",
-    company: "Brennan Remodel Co.",
-    rating: "4.9",
-    jobs: 38,
-    city: "Denver",
-    min: BID_RANGE.min,
-    max: BID_RANGE.max,
-  },
-  {
-    initials: "FC",
-    company: "Foothills Custom",
-    rating: "4.7",
-    jobs: 21,
-    city: "Lakewood",
-    min: 13900,
-    max: 17400,
-  },
-];
 
 export type CompareBid = Bid & {
   isNew?: boolean;
@@ -345,3 +324,178 @@ export const VISIT_TIMES = [
   { label: "2:00 PM", selected: true },
   { label: "4:00 PM" },
 ];
+
+// ---------------------------------------------------------------------------
+// Hero-only data — the two-sided home hero and the /homeowners hero.
+// ---------------------------------------------------------------------------
+
+/** The four guided captures the photos step asks for on a kitchen.
+ *
+ * Every tile is the same photo framed differently, and that is the point: this
+ * is one homeowner shooting one room four times, which is exactly what the
+ * guided capture flow produces. Four unrelated stock kitchens would read as
+ * four different houses.
+ *
+ * The framing is `zoom` + `origin`, not `object-position`. The source is 1.2:1,
+ * so once `object-fit: cover` has filled a square tile there is only ~17% of
+ * width left for `object-position` to travel and every crop comes out looking
+ * the same. Scaling about a named origin picks a genuinely different region.
+ * `zoom: 1` means the whole frame, which is what "Overview" should be. */
+export const KITCHEN_CAPTURES = [
+  { label: "Overview", zoom: 1, origin: "50% 50%" },
+  { label: "Cabinets", zoom: 2, origin: "30% 80%" },
+  { label: "Countertops", zoom: 2.2, origin: "20% 50%" },
+  { label: "Appliances", zoom: 1.9, origin: "58% 38%" },
+];
+
+/** The generation steps the "Building your listing…" screen ticks through. */
+export const KITCHEN_GENERATION = [
+  "Reading your photos",
+  "Estimating room dimensions",
+  "Writing your scope",
+  "Building your materials list",
+];
+
+/** The published listing's summary grid, as the overview step shows it. */
+export const KITCHEN_SUMMARY = [
+  { label: "Type", value: "Kitchen remodel" },
+  { label: "Scope", value: "Cabinets, counters" },
+  { label: "Budget", value: "$32k – $38k" },
+  { label: "Bids so far", value: "" },
+];
+
+/** The scope groups the finished listing carries, with their item counts. */
+export const KITCHEN_SCOPE_GROUPS = [
+  { name: "Demolition", items: 1 },
+  { name: "Cabinetry", items: 2 },
+  { name: "Countertops", items: 1 },
+];
+
+/** The scope checkboxes the home hero's build screen ticks, in order. */
+export const KITCHEN_SCOPE_CHECKS = [
+  { name: "Cabinets", detail: "Upper, lower, or both — replace or reface" },
+  { name: "Countertops", detail: "Quartz, granite, laminate, butcher block, etc." },
+  { name: "Flooring", detail: "Tile, hardwood, LVP, or other" },
+  { name: "Appliances", detail: "Range, fridge, dishwasher, hood, etc." },
+];
+
+export type LaborRow = {
+  name: string;
+  /** The phone composition's card is too narrow for the full line-item name;
+   * this is the same item named the way the mobile bid surfaces name it. */
+  short?: string;
+  amount?: number;
+  tbd?: boolean;
+};
+
+export type LaborGroup = { name: string; rows: LaborRow[] };
+
+/** The contractor's kitchen bid, as far as the hero gets: three of the bid
+ * flow's six steps. `KITCHEN_LABOR_TOTAL` is therefore a *running* total, not
+ * the finished bid — which is why the rail reads "2 of 6" and the figure is a
+ * fraction of the bids the homeowner side shows landing on the same project.
+ *
+ * The TBD row carries no amount and is excluded from the total. It is never an
+ * allowance and never a dollar figure. */
+export const KITCHEN_LABOR: LaborGroup[] = [
+  {
+    name: "Demolition",
+    rows: [
+      {
+        name: "Remove existing cabinets, counters and flooring; haul away",
+        amount: 2400,
+      },
+    ],
+  },
+  {
+    name: "Cabinetry",
+    rows: [
+      {
+        name: "Install 14 ln ft shaker cabinets with soft-close hardware",
+        short: "Install 14 ln ft shaker cabinets",
+        amount: 5600,
+      },
+      { name: "Full-height uppers to ceiling with crown filler", tbd: true },
+    ],
+  },
+  {
+    name: "Countertops",
+    rows: [
+      {
+        name: "Fabricate and install quartz countertops, 42 sq ft",
+        short: "Quartz countertops, 42 sq ft",
+        amount: 4900,
+      },
+    ],
+  },
+];
+
+/** Every priced row across the groups, in the order the hero fills them in —
+ * the order the count-up and the per-row reveals both key off. */
+export const KITCHEN_LABOR_ROWS = KITCHEN_LABOR.flatMap((g) => g.rows);
+
+export const KITCHEN_LABOR_TOTAL = KITCHEN_LABOR_ROWS.reduce(
+  (sum, row) => sum + (row.amount ?? 0),
+  0,
+);
+
+/** The contractor's six-step bid rail, with Labor items current. */
+export const BID_RAIL = [
+  "Project overview",
+  "Labor items",
+  "Homeowner materials",
+  "Set bid range",
+  "Notes + timeline",
+  "Review bid",
+];
+
+/** The hero's conversation, told from both ends: the homeowner side and the
+ * contractor side render the same three lines, so they have to stay paired. */
+export const HERO_THREAD = [
+  { from: "contractor" as const, body: "Thanks for the detailed scope — I priced the cabinet run exactly as written." },
+  { from: "homeowner" as const, body: "Could you start the week of the 14th?" },
+  { from: "contractor" as const, body: "Yes — I can hold that week." },
+];
+
+/** The two ends of `HERO_THREAD`.
+ *
+ * The contractor is the bid the homeowner ends up choosing, not a fourth name:
+ * the hero shows her bid list, then her thread, and a company in the second
+ * that never appeared in the first would read as a different project. The
+ * homeowner is the kitchen's own owner for the same reason. */
+export const HERO_CONTRACTOR = (() => {
+  const chosen = COMPARE_BIDS.find((b) => b.visitRequested) ?? COMPARE_BIDS[0];
+  return { name: chosen.company, initials: chosen.initials };
+})();
+
+export const HERO_HOMEOWNER = KITCHEN.homeowner;
+
+/** The contractor's second thread, so the list reads as a real inbox. */
+export const HERO_SECOND_THREAD = {
+  initials: "DP",
+  name: "Dana P.",
+  meta: "West Highlands bath · Bid submitted",
+  when: "1d",
+};
+
+/** `$31,200` → `$31.2k`. The phone's stat strip has room for a range only in
+ * this compact form; every wider surface uses `dollars()`. */
+export const compactDollars = (n: number) =>
+  `$${(n / 1000).toFixed(1)}k`;
+
+/** The bid range a homeowner sees across the bids that have landed so far —
+ * the lowest low to the highest high, which is what the product's BID RANGE
+ * stat shows. */
+export const bidSpan = (bids: Pick<Bid, "min" | "max">[]) =>
+  bids.length
+    ? `${compactDollars(Math.min(...bids.map((b) => b.min)))} – ${compactDollars(
+        Math.max(...bids.map((b) => b.max)),
+      )}`
+    : "—";
+
+/** The average of the landed bids' midpoints, rounded to the nearest $100.
+ * Homeowners compare midpoints, so the summary line averages those. */
+export const averageEstimate = (bids: Pick<Bid, "min" | "max">[]) =>
+  Math.round(
+    bids.reduce((sum, b) => sum + midpoint(b), 0) / bids.length / 100,
+  ) * 100;
