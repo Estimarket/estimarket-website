@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { ButtonLink } from "../components/Button";
 import CTABand from "../components/CTABand";
-import HoHeroBids from "../components/home/HoHeroBids";
+import HoHeroListing from "../components/home/HoHeroListing";
 import ScopeBuilderScene from "../components/home/ScopeBuilderScene";
 import BidsArrivingScene from "../components/home/BidsArrivingScene";
 import SelectedBidStill from "../components/home/SelectedBidStill";
@@ -37,8 +37,8 @@ function Hero() {
         <div className="absolute inset-0 bg-navy/35 lg:hidden" />
       </div>
 
-      <div className="relative mx-auto flex h-full max-w-[1440px] items-center px-5 sm:px-6 lg:px-20">
-        <div className="max-w-[560px] py-16 lg:py-0">
+      <div className="relative mx-auto flex h-full max-w-[1440px] flex-wrap items-center gap-x-10 gap-y-12 px-5 py-16 sm:px-6 lg:px-20 lg:py-0">
+        <div className="min-w-0 max-w-[560px] flex-[1_1_420px]">
           <h1 className="text-[40px] font-bold leading-[1.05] text-white sm:text-[56px] lg:text-[64px]">
             The{" "}
             <span className="font-serif font-normal italic text-accent">best</span>{" "}
@@ -63,14 +63,8 @@ function Hero() {
             ))}
           </ul>
         </div>
-      </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 hidden lg:block">
-        <div className="relative mx-auto h-full max-w-[1440px]">
-          <div className="absolute left-[53.8%] top-[78px] w-[43.3%] drop-shadow-2xl">
-            <HoHeroBids />
-          </div>
-        </div>
+        <HoHeroListing />
       </div>
     </section>
   );

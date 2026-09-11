@@ -37,20 +37,25 @@ function Chip({
 export default function MarketplaceCard({
   card,
   size,
+  fill,
 }: {
   card: Card;
   size: "hero" | "grid";
+  /** Stretch to the grid row's height. The hero's console grid stretches every
+   * cell, so a card that sized to its own content would sit short of its
+   * neighbours whenever its title fitted on one line. */
+  fill?: boolean;
 }) {
   const hero = size === "hero";
   const photoH = hero ? 104 : 112;
 
   return (
     <div
-      className={
+      className={`${fill ? "h-full " : ""}${
         hero
           ? "overflow-hidden rounded-[12px] bg-white shadow-brand-lg"
           : "overflow-hidden rounded-[8px] border border-line bg-white"
-      }
+      }`}
     >
       <div
         className="relative"

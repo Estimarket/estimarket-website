@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { ButtonLink } from "./components/Button";
 import CTABand from "./components/CTABand";
-import HeroComposition from "./components/home/HeroComposition";
+import HeroFlip from "./components/home/HeroFlip";
 import StepScopeStill from "./components/home/StepScopeStill";
 import MarketplaceScene from "./components/home/MarketplaceScene";
 import BidScene from "./components/home/BidScene";
@@ -61,7 +61,7 @@ function Hero() {
           </ul>
         </div>
 
-        <HeroComposition />
+        <HeroFlip />
       </div>
     </section>
   );

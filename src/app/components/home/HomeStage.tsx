@@ -18,8 +18,17 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 export const STEP_STAGE = { w: 560, h: 540 };
 export const STEP_STAGE_MOBILE = { w: 342, h: 348 };
 
-export const HERO_STAGE = { w: 580, h: 500 };
-export const HERO_STAGE_MOBILE = { w: 342, h: 330 };
+/** The home hero's two-sided flip stage. The contractor side is a 660-wide
+ * browser window, so the stage is authored at 660 rather than the 580 the
+ * previous single-layer hero used. */
+export const HERO_STAGE = { w: 660, h: 500 };
+export const HERO_STAGE_MOBILE = { w: 342, h: 400 };
+
+/** The /homeowners hero. Desktop matches the home hero's canvas; the phone
+ * composition is deliberately short so it can stack under the copy without
+ * cropping the hero photo to a sliver. */
+export const HO_HERO_STAGE = { w: 660, h: 500 };
+export const HO_HERO_STAGE_MOBILE = { w: 342, h: 212 };
 
 /**
  * Measures its own width and scales a fixed-size stage down to fit, keeping
@@ -30,11 +39,18 @@ export const HERO_STAGE_MOBILE = { w: 342, h: 330 };
 export function ScaledStage({
   w,
   h,
+  minScale = 0,
   className,
   children,
 }: {
   w: number;
   h: number;
+  /** Floor on the scale factor. Below it the stage is clipped by the
+   * wrapper's `overflow-hidden` rather than shrinking further — a guard for
+   * the hero stages, whose device frames stop reading at very small scales.
+   * In practice it never engages: by the time a hero column is narrow enough
+   * the viewport is below 640px and the mobile composition has taken over. */
+  minScale?: number;
   className?: string;
   children: ReactNode;
 }) {
@@ -44,12 +60,13 @@ export function ScaledStage({
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    const update = () => setScale(Math.min(1, el.clientWidth / w));
+    const update = () =>
+      setScale(Math.min(1, Math.max(minScale, el.clientWidth / w)));
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [w]);
+  }, [w, minScale]);
 
   return (
     <div
