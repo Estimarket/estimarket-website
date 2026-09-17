@@ -16,8 +16,16 @@ syntax, so Dev Mode shows `var(--color-primary)` next to `color/primary/base`.
 | Text styles          | `display/*`, `heading/*`, `body/*`, `label/*`, `caption`, `editorial/display-italic` |
 | Effect styles        | `elevation/xs` … `elevation/2xl`, `elevation/inner` (navy-tinted) |
 | Components           | `Button` (Style x Size), `Input` (State), `Badge` (Tone), `Toast` (Type), `Rating` |
+| Brand components     | `Brand/Lockup` (Tone), `Brand/Badge` (Tone), `Brand/Mark` (Tone), `Brand/Wordmark` (Tone) — on the Foundations page under "Brand — logo" |
 
 Design with the **Semantic** collection. Reach for `Primitives` only when no role fits.
+
+## Brand components — the exception to "CSS is the source of truth"
+
+The four `Brand/*` sets are vector, not tokens: they were imported from the logo package
+in `assets/logo/` and carry no variable bindings. The package is their source of truth —
+if the logo changes, re-import, don't redraw. Note `Brand/Badge` is the logo's stamped
+plate and has nothing to do with the status-chip component also called `Badge`.
 
 ## Naming differences to know about
 
