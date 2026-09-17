@@ -158,11 +158,14 @@ function LaborScreen({ v }: { v: HeroState }) {
         className="flex w-[138px] flex-none flex-col border-r p-[10px_6px]"
         style={{ borderColor: HAIRLINE }}
       >
+        {/* The single-colour lockup: at 96px the two-tone's orange bar goes muddy, and this
+            one sits inside a miniature of the bid flow, not in the site's own chrome. */}
         <Image
-          src="/brand/lockup-color.png"
+          src="/brand/lockup-navy.svg"
           alt=""
-          width={96}
+          width={71}
           height={15}
+          unoptimized
           className="m-[0_8px_10px] block h-[15px] w-auto"
         />
         <div className="m-[0_8px_9px] text-[8.5px] font-semibold text-muted">

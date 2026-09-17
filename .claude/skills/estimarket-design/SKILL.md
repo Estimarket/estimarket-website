@@ -19,7 +19,7 @@ There are two distinct user sides:
 
 - `README.md` — brand foundation, content voice/tone, full visual foundations, iconography. **Read this first.**
 - `colors_and_type.css` — every design token (color, type, spacing, shadow, radius, motion) as CSS variables, plus `@font-face` blocks for the locally-hosted DM Sans + DM Serif Display fonts. Drop it into any HTML file with `<link rel="stylesheet" href="colors_and_type.css">` and you're on-brand.
-- `assets/` — logo PNGs (lockup, mark, wordmark — color, reverse, mono variants) and favicons in all sizes.
+- `assets/` — the logo system. `assets/logo/` is the full package — lockup, badge, mark, wordmark, favicons, iOS + Android app icons, in SVG/PNG/PDF — with every rule in `assets/logo/LOGO-PACKAGE.md`. The flat files beside it (`lockup-color.svg`, `mark-color.svg`, `favicon-*.png` …) are shortcuts to the common variants. **Use the SVGs on the web.**
 - `preview/*.html` — small reference cards for individual token groups. Useful as visual confirmation while you build.
 - `ui_kits/marketing-site/` — high-fidelity React UI kit for the marketing site (Home, Search results, Property detail). Components are small, mostly cosmetic, and easy to lift.
 - `SKILL.md` — this file.
@@ -48,6 +48,7 @@ React-based screens in `Estimarket Website/Homeowner Experience/` and `Estimarke
 - **Sentence case everywhere.** No title case in headlines, buttons, or nav.
 - **No emoji** in marketing copy. Use real glyphs (`★`, `·`, `–`).
 - **DM Sans + DM Serif Display** are the brand typefaces, loaded locally from `fonts/`.
+- **The logo is a file, not type.** The wordmark is Staatliches, outlined — a logo-only face that appears nowhere else in the UI. Place `assets/lockup-color.svg` (or `-reverse` on navy, `-navy` beside a CTA); never set the mark next to typed text to fake it, and never put the badge in a nav bar.
 
 ## Caveats baked into this system
 

@@ -13,15 +13,22 @@ README.md                  — this file: brand overview, content + visual found
 SKILL.md                   — agent-skill manifest (cross-compatible w/ Claude Code skills)
 colors_and_type.css        — all CSS variables (color, type, spacing, shadow, radius, motion) + @font-face
 fonts/                     — webfonts (DM Sans, DM Serif Display — see substitution note)
-assets/                    — logo kit (PNG, transparent) — see Logo kit v1.1
-  ├─ lockup-{color,reverse}.png                        — 630×128 full lockup
-  ├─ mark-{color,reverse,mono-navy,orange}.png         — 128×128 mark only
-  ├─ wordmark-{color,reverse}.png                      — 401×128 wordmark only
-  ├─ favicon-{16,16-crisp,32,48,64,96,128,180,192,256,512}.png
+assets/                    — logo system (SVG · PNG · PDF) — see "Logo + wordmark"
+  ├─ logo/                 — the full logo package, source of truth
+  │   ├─ 01-lockup/        — primary logo · svg · png @1x @2x @3x @print · pdf
+  │   ├─ 02-badge/         — stamped plate · merch, decals, avatars
+  │   ├─ 03-mark/          — mark + bars-only, every colourway
+  │   ├─ 04-favicon/       — 16 + 32 hand-gridded, 48–512, svg
+  │   ├─ 05-app-icon-ios/  — all 13 sizes, opaque, no alpha
+  │   ├─ 06-app-icon-android/ — mipmap-mdpi → xxxhdpi, adaptive foreground
+  │   ├─ 07-wordmark/      — derived from the lockup, not an original master
+  │   └─ LOGO-PACKAGE.md   — full usage rules: clear space, minimum sizes, don'ts
+  ├─ lockup-{color,reverse,navy}.svg · lockup-{color,reverse}.png    — shortcuts to
+  ├─ wordmark-{color,reverse,navy}.svg/.png                            the variants
+  ├─ mark-{color,reverse,mono-navy,orange}.svg/.png                    used most often
+  ├─ badge-color.svg/.png
+  ├─ favicon.svg · favicon-{16,16-crisp,32,48,64,96,128,180,192,256,512}.png
   └─ apple-touch-icon-180.png
-  Note: mono-navy / mono-white lockup + wordmark exports are
-  broken upstream (single-ink export drops the orange "market"
-  half of the wordmark) — files removed pending re-export.
 preview/                   — small HTML cards that render in the Design System tab
   ├─ colors-*.html         — color palette swatches
   ├─ type-*.html           — typography specimens
@@ -116,7 +123,7 @@ Surface the things that build confidence: contractor license verification, revie
 ## VISUAL FOUNDATIONS — the visual DNA
 
 ### The vibe in one paragraph
-Estimarket looks **clear, trustworthy, and action-oriented.** Project photography and contractor work samples carry the hero moments. Type is a warm sans-serif (DM Sans) for all UI and body copy, with a single italicized serif accent for the wordmark only. The palette is anchored by a deep, trustworthy navy blue, energized by a single warm orange reserved for primary CTAs. Layouts breathe — lots of whitespace, data presented cleanly, no clutter. The feel is "honest fintech meets home services," not "lead-gen site."
+Estimarket looks **clear, trustworthy, and action-oriented.** Project photography and contractor work samples carry the hero moments. Type is a warm sans-serif (DM Sans) for all UI and body copy, with a condensed display face (Staatliches) reserved for the logo alone. The palette is anchored by a deep, trustworthy navy blue, energized by a single warm orange reserved for primary CTAs. Layouts breathe — lots of whitespace, data presented cleanly, no clutter. The feel is "honest fintech meets home services," not "lead-gen site."
 
 ### Color motifs
 - **One hero blue + one hero orange.** Blue (`#245ABC`) and dark blue (`#0E214B`) carry brand identity; orange (`#E85D26`) is reserved almost exclusively for the primary CTA and a couple of urgency badges. The contrast is intentional: blue = trust, orange = action.
@@ -126,7 +133,7 @@ Estimarket looks **clear, trustworthy, and action-oriented.** Project photograph
 
 ### Type motifs
 - **Freight Sans Pro everywhere** — headings and body share the same family, only weight + size differ. This creates rhythm without typographic stunts.
-- **Dala Prisma Italic** is used **only** for the wordmark logotype and (very rarely) a single editorial display moment per page. Never for body copy. Its mixed-axis italics (upright V/r, inclined b/o) are what make the brand identifiable.
+- **Staatliches is the logo face and nothing else** — never in headlines, body copy, or UI. The two-tone wordmark is what makes the brand identifiable. **DM Serif Display Italic** keeps its separate role: at most one editorial display moment per page.
 - **Negative tracking on display sizes** (−0.02em to −0.03em) tightens hero headlines.
 - **Generous line height** on body (1.6) supports the "space to breathe" principle.
 
@@ -257,20 +264,64 @@ Then in markup:
 - App-store badges and social-icon brand marks are rendered as PNGs/SVGs supplied by the platform owner, not redrawn.
 
 ### Logo + wordmark
-The Estimarket wordmark is rendered with **DM Serif Display Italic** (a free Google Font substitute for the proprietary Dala Prisma; flagged below). See `assets/logo-wordmark.svg`.
+
+Two members, one system. Every colourway, format and icon size lives in `assets/logo/`, with
+the complete rules in `assets/logo/LOGO-PACKAGE.md`. The flat files at the top of `assets/`
+are shortcuts to the variants used most often.
+
+- **Lockup** (`assets/lockup-color.svg`) — the primary logo. Site, app, documents, decks, email.
+- **Badge** (`assets/badge-color.svg`) — the stamped plate. Merch, decals, stickers, social avatars.
+- The **mark** is shared by both, and is the app icon.
+
+**Primary is two-tone:** navy block, white top and bottom bars, orange middle bar; "Esti" navy,
+"market" orange. `lockup-navy.svg` is the single-colour alternate and `lockup-reverse.svg` the
+dark-background form.
+
+**The wordmark is Staatliches** (SIL Open Font License — free for commercial use, including
+logos), converted to outlines in every file, so nothing here needs the font installed. It is a
+logo-only face: DM Sans and DM Serif Display remain the typefaces for everything else.
+
+| Where | File |
+|---|---|
+| Nav, light background | `assets/lockup-color.svg` |
+| Footer, navy background | `assets/lockup-reverse.svg` |
+| Near a CTA, or an orange-heavy page | `assets/lockup-navy.svg` |
+| Merch, decals, social avatar | `assets/badge-color.svg` |
+| Browser tab | `assets/favicon.svg` + the favicon PNGs |
+| iOS / Android app icon | `assets/logo/05-app-icon-ios/`, `assets/logo/06-app-icon-android/` |
+| Print | the `pdf/` folder inside each group |
+
+**Rules that bite.**
+
+- Clear space equals **half the block height** on all four sides.
+- Minimum widths: lockup **120px**, badge **160px**, mark **16px**. Use the hand-gridded 16 and
+  32px favicons; don't downscale a larger file to get there.
+- **Two-tone has a ~96px floor.** Below it the orange bar goes muddy — which is why the favicons
+  and both app icon sets are single-colour. Use `-navy` under 96px.
+- **Never put the badge in the nav.** Its border reads as a UI control beside real buttons.
+- **Never rebuild the lockup** by setting the mark next to typed text. The spacing is part of the
+  artwork; use the file.
+- Orange `#E85D26` is also the primary CTA colour, and the primary lockup now carries it. Fine in
+  the nav — a small amount, far from the button. Next to a CTA, switch to `-navy`.
+- The wordmark-only files are derived from the lockup for slots too tight for the mark. Prefer the
+  lockup wherever it fits.
+
+*Superseded 2026-09: the DM Sans / DM Serif Display Italic wordmark and the old `lockup-*.png`
+kit. Any surface still showing it is out of date.*
 
 ---
 
 ## Font substitutions — FLAG
 
-The spec calls for two licensed typefaces:
+The spec calls for licensed typefaces we don't hold:
 
 | Spec calls for | We're using | Where to get the real thing |
 |---|---|---|
-| **Dala Prisma** (modified) — for the wordmark and rare editorial display | **DM Serif Display Italic** (Google Fonts, free) | Commercial Type, commercial license required |
 | **Freight Sans Pro** — for all headings + body | **DM Sans** (Google Fonts, free) | GarageFonts, commercial license required |
 
-The spec itself recommends `DM Sans` as the closest open-source stand-in for Freight Sans Pro, so that pairing is faithful to the brief. **DM Serif Display Italic is our best free approximation of Dala Prisma's italicized serif spirit**, but it lacks Dala Prisma's signature "prismed" line-decorations. If you have the real font files, drop them into `fonts/` and update `colors_and_type.css` — the system will inherit them automatically.
+The spec itself recommends `DM Sans` as the closest open-source stand-in for Freight Sans Pro, so that pairing is faithful to the brief. If you have the real font files, drop them into `fonts/` and update `colors_and_type.css` — the system will inherit them automatically.
+
+**The wordmark needs no substitution.** It is set in **Staatliches** (SIL Open Font License, free for commercial and logo use) and shipped as outlines, so it renders correctly with nothing installed. The earlier Dala Prisma / DM Serif Display Italic wordmark is superseded.
 
 ---
 

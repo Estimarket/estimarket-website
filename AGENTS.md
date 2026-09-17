@@ -15,7 +15,11 @@ Code and Cursor pick it up from this repo — no Claude subscription add-on need
 - `README.md` — brand foundation, voice and tone, visual foundations, iconography.
 - `FIGMA-LIBRARY.md` — the matching Figma library, what it publishes, and how the two
   stay in sync.
-- `assets/` — logo lockup, mark, wordmark, favicons.
+- `assets/` — the logo system. `assets/logo/` is the full package (lockup, badge, mark,
+  wordmark, favicons, iOS + Android app icons; SVG, PNG, PDF) and `assets/logo/LOGO-PACKAGE.md`
+  has the rules. The flat files beside it are shortcuts to the common variants. Use SVG on the
+  web. The wordmark is Staatliches, outlined — a logo-only face, never set as live text, and
+  never faked by putting the mark next to typed text.
 - `preview/` — token reference cards. Note the `components-*.html` cards for navigation,
   search bar and property card still carry copy from the original reference kit the
   visual language came from; do not treat those as Estimarket patterns.
